@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, redirect, url_for, request
-from utils import analyze
+from utils import api
 
 app = Flask(__name__)
 
