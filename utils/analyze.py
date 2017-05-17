@@ -29,7 +29,20 @@ def get_stop_id(entity):
     return entity.trip_update.stop_time_update[0].stop_id
 
 e = feed.entity[0]
-print get_stop_id(e)
+print "Stop ID: " + str(get_stop_id(e))
+
+# returns the trip id for a given entity which can be used to identify the train
+def get_trip_id(entity):
+    return entity.trip_update.trip.trip_id
+
+print "Trip ID: " + str(get_trip_id(e))
+
+# returns the trip id for a given entity which can be used to identify the train
+def get_train(entity):
+    trip_id = get_trip_id(entity)
+    return trip_id[7]
+
+print "Train: " + str(get_train(e))
 
 '''
 # sample call
@@ -56,4 +69,4 @@ def get_station_name(stop_id):
     return d["result"]["name"]
 
 sid = get_stop_id(e)
-print get_station_name(sid)
+print "Station Name: " + str(get_station_name(sid))
