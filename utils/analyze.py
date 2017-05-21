@@ -102,4 +102,4 @@ def get_train(number,direction):
                     stop_names.append(m)
     return stop_names
 
-print get_train(1,'S')
+#print get_train(1,'S')
