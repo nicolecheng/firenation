@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../static/overwriter.css">
+        <link rel="stylesheet" type="text/css" href="../static/overwrite.css">
         <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Bungee+Shade|Permanent+Marker" rel="stylesheet">
 
         <script src="../static/bootstrap/js/jquery.min.js"></script>
@@ -11,55 +11,75 @@
         <title>Fire Nation</title>
     </head>
 <body>
-  <nav id = "nav" class="navbar navbar-default navbar-top">
-            <div class="container-fluid">
-	      <div class="navbar-header">
-                    <a id = "logo" href="">MTA Train Tracker</a>
-                </div>
-                <div class="collapse navbar-collapse" id="collap">
-                <ul class="nav navbar-nav">
+  <nav class="navbar navbar-default navbar-top">
+           <div class="container-fluid">
+               <div class="navbar-header">
+                   <a class="navbar-brand" href="home.html">MTA Train Tracker</a>
+               </div>
+                <ul class="nav navbar-nav navbar-right">
                     <li class="page-scroll dropdown">
                         <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown" href="">Trains
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#">5</a></li>
-                          <li><a href="#">6</a></li>
+                          <li><a href="../templates/train.html">1</a></li>
+                          <li><a href="../templates/train.html">2</a></li>
+                          <li><a href="../templates/train.html">3</a></li>
+                          <li><a href="../templates/train.html">4</a></li>
+                          <li><a href="../templates/train.html">5</a></li>
+                          <li><a href="../templates/train.html">6</a></li>
                         </ul>
                     </li>
                 </ul>
                 </div>
-                <div class="collapse navbar-collapse" id="collaps">
-                <ul class="nav navbar-nav">
-                    <li class="page-scroll dropdown">
-                    <a id="station" class="dropdown-toggle" type="button" data-toggle="dropdown" href="">Stations
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">1</a></li>
-
-                          <!--
-                          {% for stat in station %}
-		                 <li><a href="#">stat[0]</a></li>
-	                  {% endfor %}
-                          -->
-
-                        </ul>
-                    </div>
-                <nav id = "but" class="navbar navbar-light bg-faded">
-                         <a class="navbar-brand" href="../templates/home.html">Home</a>
-                </nav>
    </nav>
-   <div id= "stuff">
-   <svg id="a" height="900" width="900" xmlns="http://ww.w3.org/2000/avg">
-          <circle cx="350" cy="350" r="300" fill="#DAA520"/>   
-     </svg>
-     <div class="jumbotron jumbotron-fluid">
-        <p> We both know it won't be on time </p>
-     </div>
-  </div>
-  </div>
+
+   <h2>Sample:</h2>
+   <ul class="list-group train">
+     <li class="list-group-item">
+     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">215 St<span class="caret"></a><span class="badge">0</span></span>
+       <ul class="dropdown-menu">
+         <li>Uptown Trains:</li>
+         <li>1 train at 191 St <span class="label label-default">5 mins</span></li>
+         <li>Downtown Trains:</li>
+         <li>1 train at Marble Hill - 225 St <span class="label label-default">4 mins</span></li>
+       </ul>
+     </li>
+     <li class="list-group-item">
+     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">207 St<span class="caret"></a><span class="badge">0</span></span>
+       <ul class="dropdown-menu">
+         <li>Uptown Trains:</li>
+         <li>1 train at 191 St <span class="label label-default">4 mins</span></li>
+         <li>Downtown Trains:</li>
+         <li>1 train at Marble Hill - 225 St <span class="label label-default">6 mins</span></li>
+       </ul>
+     </li>
+     <li class="list-group-item">
+     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">Dyckman St<span class="caret"></a><span class="badge">0</span></span>
+       <ul class="dropdown-menu">
+         <li>Uptown Trains:</li>
+         <li>1 train at 191 St <span class="label label-default">2 mins</span></li>
+         <li>Downtown Trains:</li>
+         <li>1 train at Marble Hill - 225 St <span class="label label-default">7 mins</span></li>
+       </ul>
+     </li>
+     <li class="list-group-item">
+     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">191 St<span class="caret"></a><span class="badge">1</span></span>
+       <ul class="dropdown-menu">
+         <li>Uptown Trains:</li>
+         <li>1 train at 191 St <span class="label label-default">Arriving</span></li>
+         <li>Downtown Trains:</li>
+         <li>1 train at Marble Hill - 225 St <span class="label label-default">9 mins</span></li>
+       </ul>
+     </li>
+     <li class="list-group-item">
+     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">181 St<span class="caret"></a><span class="badge">0</span></span>
+       <ul class="dropdown-menu">
+         <li>Uptown Trains:</li>
+         <li>1 train at 157 St <span class="label label-default">5 mins</span></li>
+         <li>Downtown Trains:</li>
+         <li>1 train at Marble Hill - 225 St <span class="label label-default">13 mins</span></li>
+       </ul>
+     </li>
+   </ul>
 </body>
 </html>
