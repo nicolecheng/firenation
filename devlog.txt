@@ -1,3 +1,42 @@
 Team Fire Nation
-Devlog
+-------------------------------------------------------------------------------
+                    Devlog
+-------------------------------------------------------------------------------
+Format: firstL -- TIMESTAMP
 
+ziyanL -- 2017-5-11 @12:30
+	Added design document
+
+jessicaY -- 2017-5-12 @12:15
+	added app.py and essential python files
+
+jessicaY -- 2017-5-16 @17:18
+	added support for stop id and stop name
+
+yikaiW -- 2017-5-17 @14:30
+	found a way to acquire stop name
+
+jessicaY -- 2017-5-17 @8:46
+	added code for parsing train name and added more descriptive test case
+
+yikaiW -- 2017-5-18 @9:47
+	modified home.html with navbar
+
+ziyanL -- 2017-5-18 @14:25
+	added core bootstrap files and css for html
+
+nicoleC -- 2017-5-21 @5:25
+	added all_trains() and get_train()
+
+jessicaY -- 2017-5-21 @20:27
+	added support for direction and arrival times
+
+yikaiW -- 2017-5-21 @23:33
+	totally revamped home and train.html
+	added javascript
+
+jessicaC -- 2017-5-22 @14:50
+	cleaned up python code
+
+
+	
