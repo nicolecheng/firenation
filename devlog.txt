@@ -40,6 +40,7 @@ jessicaC -- 2017-5-22 @14:50
 
 yikaiW -- 2017-5-22 @18:16
 	added images for trains
+	added images for home.html and train.html
 
 
 	
