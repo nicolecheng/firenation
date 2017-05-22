@@ -1,35 +1,4 @@
-
-#nav{
-    background-color: #87CEEB;
-    min-height: 100px;
-    vertical-align: middle;
-    font-size: 400%;
-}
-
-#logo{ 
-    font-weight: bold;
-}
-
-
-
-
-#collap{
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
-    font-color: #8080ff;
-}
-
-#collaps{
-    position: absolute;
-    left: 65%;
-    transform: translatex(-50%);
-}
-
-#but{
-    float: right;
-}
-
-body{
-    background: url("http://img.theepochtimes.com/n3/eet-content/uploads/2016/01/27/AP_9707040375.jpg")no-repeat center center fixed;
+.alert {
+  width: 44%;
+  margin: auto;
 }

@@ -11,49 +11,36 @@
         <title>Fire Nation</title>
     </head>
 <body>
-  <nav id = "nav" class="navbar navbar-default navbar-top">
-            <div class="container-fluid">
-	      <div class="navbar-header">
-                    <a id = "logo" href="">MTA Train Tracker</a>
-                </div>
-                <div class="collapse navbar-collapse" id="collap">
-                <ul class="nav navbar-nav">
+  <nav class="navbar navbar-default navbar-top">
+           <div class="container-fluid">
+               <div class="navbar-header">
+                   <a class="navbar-brand" href="home.html">MTA Train Tracker</a>
+               </div>
+                <ul class="nav navbar-nav navbar-right">
                     <li class="page-scroll dropdown">
                         <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown" href="">Trains
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#">5</a></li>
-                          <li><a href="#">6</a></li>
+                          <li><a href="../templates/train.html">1</a></li>
+                          <li><a href="../templates/train.html">2</a></li>
+                          <li><a href="../templates/train.html">3</a></li>
+                          <li><a href="../templates/train.html">4</a></li>
+                          <li><a href="../templates/train.html">5</a></li>
+                          <li><a href="../templates/train.html">6</a></li>
                         </ul>
                     </li>
                 </ul>
                 </div>
-                <div class="collapse navbar-collapse" id="collaps">
-                <ul class="nav navbar-nav">
-                    <li class="page-scroll dropdown">
-                    <a id="station" class="dropdown-toggle" type="button" data-toggle="dropdown" href="">Stations
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">1</a></li>
-
-                          <!--
-                          {% for stat in station %}
-		                 <li><a href="#">stat[0]</a></li>
-	                  {% endfor %}
-                          -->
-                           
-                        </ul>
-                     </li>
-                  </ul>
-                </div>
-             </div>  
-             <nav id = "but" class="navbar navbar-light bg-faded">
-                         <a class="navbar-brand" href="../templates/train.html">Check</a>
-             </nav>
    </nav>
+   <div class="jumbotron text-center">
+            <h1> General Alerts </h1>
+            <ul class="list-group alert">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+    </div>
 </body>
 </html>
