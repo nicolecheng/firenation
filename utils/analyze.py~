@@ -32,7 +32,7 @@ trip_update {
   }
 }
 '''
-#print feed.entity[0].trip_update.stop_time_update[0].arrival.time
+
 # returns the stop id for a given entity which can be used to identify the station
 def get_stop_id(entity):
     return entity.trip_update.stop_time_update[0].stop_id
@@ -165,7 +165,7 @@ def get_arriving_trains():
     d = json.loads(page)
     return d["result"]
     
-#print "Trains Arriving Now: " + str(get_arriving_trains())
+print "Trains Arriving Now: " + str(get_arriving_trains())
 
 #[[train,[stops]],[train,[stops]],...]
 alltrains = []
