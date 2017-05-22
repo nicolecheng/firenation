@@ -2,3 +2,29 @@
   width: 44%;
   margin: auto;
 }
+
+.row {
+  margin: auto;
+  width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+/*.col-sm-3:not(:first-child) {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-left: 1px solid #A9A9A9;
+}*/
+
+.col-sm-3 h3 {
+  padding-top: 0px;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: #D3D3D3;
+}
+
+.col-sm-3 h4 {
+  padding-left: 6%;
+}
