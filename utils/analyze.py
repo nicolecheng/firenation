@@ -216,4 +216,24 @@ def get_train(number,direction):
                     stop_names.append(m)
     return stop_names
 
+# returns both uptown and downtown trains
+# [[uptown1, uptown2,...],[downtown1,downtown2,...]]
+def get_trains(number):
+    up = []
+    down = []
+    for t in alltrains:
+        if "_"+str(number)+".." in t[0]:
+            if "..N" in t[0]:
+                for s in t[1]:
+                    m = get_station_name(s)
+                    if m not in up:
+                        up.append(m)
+            elif "..S" in t[0]:
+                for s in t[1]:
+                    m = get_station_name(s)
+                    if m not in down:
+                        down.append(m)
+    return [up,down]
+                        
+
 #print get_train(1,'S')
