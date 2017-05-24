@@ -3,8 +3,10 @@ from datetime import datetime
 import urllib, urllib2, json
 
 feed = gtfs_realtime_pb2.FeedMessage()
-response = urllib.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
+response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
 feed.ParseFromString(response.read())
+
+STOPS = {"1": ["Van Cortlandt Park-242 Street / Broadway", "238 Street / Broadway", "231 Street / Broadway", "Marble Hill-225 Street / Broadway", "215 Street / 10 Avenue", "207 Street / 10 Avenue", "Dyckman Street / Nagle Avenue", "191 Street / Saint Nicholas Avenue", "181 Street / Saint Nicholas Avenue", "168 Street-Washington Heights / Broadway", "157 Street / Broadway", "145 Street / Broadway", "137 Street-City College / Broadway", "125 Street / Broadway", "116 Street-Columbia University / Broadway", "Cathedral Parkway (110 Street) / Broadway", "103 Street / Broadway", "96 Street / Broadway", "86 Street / Broadway", "79 Street / Broadway", "72 Street / Broadway", "66 Street-Lincoln Center / Broadway", "59 Street-Columbus Circle / Broadway", "50 Street / Broadway", "Times Square-42 Street / 7 Avenue-Broadway", "34 Street-Penn Station / 7 Avenue", "28 Street / 7 Avenue", "23 Street / 7 Avenue", "18 Street / 7 Avenue", "14 Street / 7 Avenue", "Christopher Street-Sheridan Square / 7 Avenue South", "Houston Street / Varick Street", "Canal Street / Varick Street", "Franklin Street / Varick Street", "Chambers Street / West Broadway", "Cortlandt Street / West Broadway", "Rector Street", "South Ferry"], "2": ["Wakefield-241 Street / White Plains Road", "Nereid Avenue / White Plains Road", "233 Street / White Plains Road", "225 Street / White Plains Road", "219 Street / White Plains Road", "Gun Hill Road / White Plains Road", "Burke Avenue / White Plains Road", "Allerton Avenue / White Plains Road", "Pelham Parkway / White Plains Road", "Bronx Park East / White Plains Road", "East 180 Street / Morris Park Avenue", "West Farms Square-East Tremont Avenue / Boston Road", "174 Street / Southern Boulevard", "Freeman Street / Southern Boulevard", "Simpson Street / Westchester Avenue", "Intervale Avenue / Westchester Avenue", "Prospect Avenue / Westchester Avenue", "Jackson Avenue / Westchester Avenue", "3 Avenue-149 Street", "149 Street-Grand Concourse", "135 Street / Lenox Avenue", "125 Street / Lenox Avenue", "116 Street / Lenox Avenue", "Central Park North (110 Street) / Lenox Avenue", "96 Street / Broadway", "86 Street / Broadway", "79 Street / Broadway", "72 Street / Broadway", "66 Street-Lincoln Center / Broadway", "59 Street-Columbus Circle / Broadway", "50 Street / Broadway", "Times Square-42 Street / 7 Avenue-Broadway", "34 Street-Penn Station / 7 Avenue", "28 Street / 7 Avenue", "23 Street / 7 Avenue", "18 Street / 7 Avenue", "14 Street / 7 Avenue", "Christopher Street-Sheridan Sq / 7 Avenue", "Houston Street / Varick Street", "Canal Street / Varick Street", "Franklin Street / Varick Street", "Chambers Street / West Broadway", "Park Place / Broadway", "Fulton Street / William St", "Wall Street / William Street", "Clark Street / Henry Street", "Borough Hall / Court Street-Montague Street", "Hoyt Street / Fulton Mall", "Nevins Street / Flatbush Avenue", "Atlantic Avenue / Barclays Center", "Bergen Street / Flatbush Avenue", "Grand Army Plaza / Flatbush Avenue", "Eastern Parkway-Brooklyn Museum", "Franklin Avenue / Eastern Parkway", "President Street / Nostrand Avenue", "Sterling Street / Nostrand Avenue", "Winthrop Street / Nostrand Avenue", "Church Avenue / Nostrand Avenue", "Beverly Road / Nostrand Avenue", "Newkirk Avenue / Nostrand Avenue", "Flatbush Avenue-Brooklyn College /  Nostrand Avenue"], "3": ["Harlem-148 Street / 7 Avenue", "145 Street / Lenox Avenue", "135 Street / Lenox Avenue", "125 Street / Lenox Avenue", "116 Street / Lenox Avenue", "Central Park North (110 Street) / Lenox Avenue", "96 Street /Broadway", "72 Street /Broadway", "Times Square-42 Street /7 Avenue-Broadway", "34 Street-Penn Station / 7 Avenue", "14 Street / 7 Avenue", "Chambers Street / West Broadway", "Park Place / Broadway", "Fulton Street / William St", "Wall Street / William Street", "Clark Street / Henry Street", "Borough Hall / Court Street-Montague Street", "Hoyt Street-Fulton Mall", "Nevins Street / Flatbush Avenue", "Atlantic Avenue / Barclays Center", "Bergen Street / Flatbush Avenue", "Grand Army Plaza / Flatbush Avenue", "Eastern Parkway-Brooklyn Museum", "Franklin Avenue / Eastern Parkway", "Nostrand Avenue / Eastern Parkway", "Kingston Avenue / Eastern Parkway", "Crown Heights-Utica Avenue / Eastern Parkway", "Sutter Avenue-Rutland Road / East 98 Street", "Saratoga Avenue / Livonia Avenue", "Rockaway Avenue / Livonia Avenue", "Junius Street / Livonia Avenue", "Pennsylvania Avenue / Livonia Avenue", "Van Siclen Avenue / Livonia Avenue", "New Lots Avenue / Livonia Avenue"], "4": [], "5": [], "6": []}
 
 e = feed.entity[0]
 
@@ -58,6 +60,14 @@ def get_direction(entity):
     return trip_id[10]
 
 #print "Direction: " + str(get_direction(e))
+
+# returns a list of all the stops for a given train
+def get_stops(train):
+    return STOPS[train]
+
+#print "Stops: " + str(get_stops("1"))
+for stop in get_stops("3"):
+    print stop
 
 '''
 # sample call

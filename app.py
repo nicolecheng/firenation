@@ -10,7 +10,8 @@ def home():
 
 @app.route("/<train_name>/", methods = ['GET', 'POST'])
 def train(train_name):
-    return render_template('train.html')
+    stops = analyze.get_stops(train_name)
+    return render_template('train.html', stops = stops)
 
 if __name__ == "__main__":
     app.debug = True
