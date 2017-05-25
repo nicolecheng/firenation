@@ -36,51 +36,19 @@
    <h2>Sample:</h2>
    <h3 style="text-align: center;"><img src="../static/1.png"></h3>
    <ul class="list-group train">
+     {% for a in stops %}
      <li class="list-group-item">
-     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">215 St<span class="caret"></a><span class="badge">0</span></span>
+     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">{{a}}<span class="caret"></a><span class="badge">0</span></span>
        <ul class="dropdown-menu">
          <li>Uptown Trains:</li>
-         <li>1 train at 191 St <span class="label label-default">5 mins</span></li>
+         <li>1 train at 191 St <span class="label label-default">4 min</span></li>
          <li>Downtown Trains:</li>
          <li>1 train at Marble Hill - 225 St <span class="label label-default">4 mins</span></li>
        </ul>
      </li>
-     <li class="list-group-item">
-     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">207 St<span class="caret"></a><span class="badge">0</span></span>
-       <ul class="dropdown-menu">
-         <li>Uptown Trains:</li>
-         <li>1 train at 191 St <span class="label label-default">4 mins</span></li>
-         <li>Downtown Trains:</li>
-         <li>1 train at Marble Hill - 225 St <span class="label label-default">6 mins</span></li>
-       </ul>
-     </li>
-     <li class="list-group-item">
-     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">Dyckman St<span class="caret"></a><span class="badge">0</span></span>
-       <ul class="dropdown-menu">
-         <li>Uptown Trains:</li>
-         <li>1 train at 191 St <span class="label label-default">2 mins</span></li>
-         <li>Downtown Trains:</li>
-         <li>1 train at Marble Hill - 225 St <span class="label label-default">7 mins</span></li>
-       </ul>
-     </li>
-     <li class="list-group-item">
-     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">191 St<span class="caret"></a><span class="badge">1</span></span>
-       <ul class="dropdown-menu">
-         <li>Uptown Trains:</li>
-         <li>1 train at 191 St <span class="label label-default">Arriving</span></li>
-         <li>Downtown Trains:</li>
-         <li>1 train at Marble Hill - 225 St <span class="label label-default">9 mins</span></li>
-       </ul>
-     </li>
-     <li class="list-group-item">
-     <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">181 St<span class="caret"></a><span class="badge">0</span></span>
-       <ul class="dropdown-menu">
-         <li>Uptown Trains:</li>
-         <li>1 train at 157 St <span class="label label-default">5 mins</span></li>
-         <li>Downtown Trains:</li>
-         <li>1 train at Marble Hill - 225 St <span class="label label-default">13 mins</span></li>
-       </ul>
-     </li>
+     {% endfor %}
+
+
    </ul>
 </body>
 </html>
