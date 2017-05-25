@@ -40,10 +40,18 @@
      <li class="list-group-item">
      <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">{{a}}<span class="caret"></a><span class="badge">0</span></span>
        <ul class="dropdown-menu">
-         <li>Uptown Trains:</li>
-         <li>1 train at 191 St <span class="label label-default">4 min</span></li>
-         <li>Downtown Trains:</li>
-         <li>1 train at Marble Hill - 225 St <span class="label label-default">4 mins</span></li>
+         <div class="container-fluid">
+         <div class="row">
+         <div class="col-sm-4">
+           <li>Uptown Trains:</li>
+           <li>1 train at 191 St <span class="label label-default">4 min</span></li>
+         </div>
+         <div class="col-sm-4">
+           <li>Downtown Trains:</li>
+           <li>1 train at Marble Hill - 225 St <span class="label label-default">4 mins</span></li>
+         </div>
+         </div>
+         </div>
        </ul>
      </li>
      {% endfor %}
