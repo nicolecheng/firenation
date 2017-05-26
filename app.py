@@ -12,7 +12,7 @@ def home():
 def train(train_name):
     stops = analyze.get_stops(train_name)
     trains = analyze.get_all_arriving_trains(train_name)
-    return render_template('train.html', stops = stops)
+    return render_template('train.html', stops = stops, trains = trains)
 ''' 
     info = {}
     for a in stops{
