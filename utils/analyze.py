@@ -26,7 +26,7 @@ e = feed.entity[0]
 def get_feed():
     return feed
 
-#print get_feed()
+print get_feed()
 
 '''
 # sample entity format
@@ -257,9 +257,8 @@ def get_trains(number):
 #print get_trains(1)
 
 '''
-[train_name, [location (station1), direction, train_name], 
-             [location (station2), direction, train_name],
-             [location (station3), direction, train_name],...]
+[ [station name, {"train id": arrival time}, {"train id": arrival time}, ...] [station name, {"train id":... ] ... ]
+[ ["train id", "train name", location, direction] ... ] 
 '''
 
 # returns a list in the above format
