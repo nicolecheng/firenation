@@ -42,5 +42,7 @@ yikaiW -- 2017-5-22 @18:16
 	added images for trains
 	added images for home.html and train.html
 
+yikaiW -- 2017-5-29@15:28
+	added map.py that uses google maps to approximate arrival time
 
 	
