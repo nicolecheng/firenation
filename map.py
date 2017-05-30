@@ -1,4 +1,5 @@
-import urllib2, json
+import urllib2, json, unicodedata
+
 
 locations = [ ["40.785902", "-73.950896"], ["40.790171", "-73.947672"],
                  ["40.794809", "-73.944614"], ["40.798651", "-73.941621"],
@@ -10,7 +11,7 @@ api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
     assumes that the first index is the origin, then uses the next index as destination
     after calculating the distance and times, makes the second index as origin and third index as destination
 '''
-def getTimes(destinations):
+def get_times(destinations):
     distance_time = []
     for i in range(len(destinations) - 1):
         lat_orig = destinations[i][0]
@@ -24,7 +25,7 @@ def getTimes(destinations):
         url += "&destination=" + lat_dest + "," + lon_dest
         url += "&mode=transit&transit_mode=subway&key="
         url += api_key
-        print url
+        #print url
 
         response = urllib2.urlopen(url).read()
         d = json.loads(response)
@@ -39,10 +40,19 @@ def getTimes(destinations):
 
     return distance_time
 
-l = getTimes(locations)
-for i in l:
-    print i
-        
-        
+l = get_times(locations)
+#for i in l:
+    #print i
 
-        
+# returns the total time it takes to get from the origin to the final destination
+def get_total_time(distance_times):
+    total_time = 0
+    for distance_time in distance_times:
+        t = distance_time[1][:-4]
+        unicodedata.normalize('NFKD', t).encode('ascii','ignore')
+        total_time += int(t)
+    return total_time
+
+#print get_total_time(l)
+
+
