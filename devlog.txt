@@ -35,14 +35,32 @@ yikaiW -- 2017-5-21 @23:33
 	totally revamped home and train.html
 	added javascript
 
-jessicaC -- 2017-5-22 @14:50
+jessicaY -- 2017-5-22 @14:50
 	cleaned up python code
 
 yikaiW -- 2017-5-22 @18:16
 	added images for trains
 	added images for home.html and train.html
 
+jessicaY -- 2017-5-24 @15:04
+        list stop for 1,2,3 trains
+	unix time to time
+
+nicoleC -- 2017-5-24 @18:02
+        get_train(number) #optimized
+	
+ziyanL -- 2017-5-25 @14:48
+        added jinja for front end
+	added jinja for back end station display + split cell
+	
+jessicaY -- 2017-5-26 @14:16
+        fixed stations to match 2nd api
+	added all stops
+	changed format of lists
+	 
 yikaiW -- 2017-5-29@15:28
 	added map.py that uses google maps to approximate arrival time
+	
+
 
 	
