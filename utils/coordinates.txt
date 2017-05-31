@@ -1,0 +1,101 @@
+
+STOPS = {"1": [
+"Van Cortlandt Park - 242 St", 
+"238 St", 
+"231 St", 
+106 "Marble Hill - 225 St", "40.874561", "-73.909831",
+107 "215 St", "40.869444", "-73.915279"
+108 "207 St", "40.864621",  "-73.918822"
+109 "Dyckman St", "40.860531",  "-73.925536"
+110 "191 St", "40.855225", "-73.929412"
+111 "181 St", "40.849505", "-73.933596"
+112 "168 St - Washington Hts", "40.840556",  "-73.940133"
+113 "157 St", "40.834041", "-73.94489"
+114 "145 St", "40.826551", "-73.95036"
+115 "137 St - City College", "40.822008", "-73.953676"
+116 "125 St", "40.815581", "-73.958372"
+117 "116 St - Columbia University", "40.807722", "-73.96411",
+118 "Cathedral Pkwy", "40.803967", "-73.966847"
+119 "103 St", "40.799446", "-73.968379"
+120 "96 St", "40.793919", "-73.972323"
+121 "86 St", "40.788644", "-73.976218"
+122 "79 St", "40.783934", "-73.979917"
+123 "72 St", "40.778453", "-73.98197"
+124 "66 St - Lincoln Center", "40.77344", "-73.982209"
+125 "59 St - Columbus Circle", "40.768247", "-73.981929"
+126 "50 St", "40.761728", "-73.983849"
+127 "Times Sq - 42 St", "40.75529", "-73.987495"
+128  "34 St - Penn Station", "40.750373", "-73.991057"
+129 "28 St", "40.747215", "-73.993365"
+130 "23 St", "40.744081", "-73.995657"
+131 "18 St", "40.74104", "-73.997871"
+132 "14 St", "40.737826", "-74.000201"
+133 "Christopher St - Sheridan Sq", "40.733422", "-74.002906"
+134 "Houston St", "40.728251", "-74.005367"
+135 "Canal St", "40.722854",: "-74.006277"
+136 "Franklin St", "40.719318", "-74.006886"
+137 "Chambers St", "40.715478", "-74.009266"
+138 "Cortlandt St", "40.711835", "-74.012188"
+139 "Rector St", "40.707513", "-74.013783"
+140 "South Ferry Loop" "40.701411",  "-74.013205"
+],
+         "2": [
+"Wakefield - 241 St",
+204 "Nereid Av", "40.898379", "-73.854376"
+"233 St", "40.893193", "-73.857473"
+"225 St", "40.888022", "-73.860341"
+"219 St", "40.883895", "-73.862633"
+"Gun Hill Rd", "40.87785", "-73.866256"
+"Burke Av", "40.871356", "-73.867164"
+"Allerton Av", "40.865462", "-73.867352"
+"Pelham Pkwy", "40.857192", "-73.867615"
+"Bronx Park East", "40.848828", "-73.868457"
+"E 180 St", "40.841894", "-73.873488"
+"West Farms Sq - E Tremont Av", "40.840295", "-73.880049"
+"174 St", "40.837288", "-73.887734"
+"Freeman St", "40.829993", "-73.891865"
+"Simpson St", "40.824073", "-73.893064"
+"Intervale Av", "40.822181", "-73.896736"
+"Prospect Av", "40.819585", "-73.90177"
+"Jackson Av", "40.81649", "-73.907807"
+"3 Av - 149 St", "40.816109", "-73.917757"
+222 "149 St - Grand Concourse", "40.81841", "-73.926718"
+224 "135 St", "40.814229", "-73.94077"
+"125 St", "40.807754", "-73.945495"
+"116 St", "40.802098", "-73.949625"
+227 "Central Park North (110 St)", "40.799075", "-73.951822"
+"96 St", "40.793919", "-73.972323"
+"72 St", "40.778453", "-73.98197"
+"Times Sq - 42 St",  "40.75529", "-73.987495"
+"34 St - Penn Station",  "40.750373", "-73.991057"
+"14 St", "40.737826", "-74.000201"
+"Chambers St", "40.715478", "-74.009266"
+228 "Park Pl", "40.713051", "-74.008811"
+"Fulton St", "40.709416", "-74.006571"
+"Wall St", "40.706821", "-74.0091"
+"Clark St", "40.697466", "-73.993086"
+"Borough Hall", "40.693219", "-73.989998"
+"Hoyt St", "40.690545", "-73.985065"
+"Nevins St", "40.688246", "-73.980492"
+"Atlantic Av - Barclays Ctr", "40.684359", "-73.977666"
+"Bergen St", "40.680829", "-73.975098"
+"Grand Army Plaza", "40.675235", "-73.971046"
+"Eastern Pkwy - Brooklyn Museum", "40.671987", "-73.964375"
+239 "Franklin Av", "40.671987", "-73.964375"
+241 "President St", "40.667883", "-73.950683"
+"Sterling St", "40.662742", "-73.95085"
+"Winthrop St", "40.656652", "-73.9502"
+"Church Av", "40.650843", "-73.949575"
+"Beverly Rd", "40.645098", "-73.948959"
+"Newkirk Av", "40.639967", "-73.948411"
+"Flatbush Av - Brooklyn College", "40.632836", "-73.947642"
+],
+         "3": ["Harlem - 148 St", "145 St", "135 St", "125 St", "116 St", "Central Park North (110 St)", "96 St", "72 St", "Times Sq - 42 St", "34 St - Penn Station", "14 St", "Chambers St", "Park Pl", "Fulton St", "Wall St", "Clark St", "Borough Hall", "Hoyt St", "Nevins St", "Atlantic Av - Barclays Ctr", "Bergen St", "Grand Army Plaza", "Eastern Parkway - Brooklyn Museum", "Franklin Av", "Nostrand Av", "Kingston Av", "Crown Heights - Utica Av", "Sutter Av - Rutland Road", "Saratoga Av", "Rockaway Av", "Junius St", "Pennsylvania Av", "Van Siclen Av", "New Lots Av"],
+         "4": ["Woodlawn", "Mosholu Pkwy", "Bedford Park Blvd - Lehman College", "Kingsbridge Rd", "Fordham Rd", "183 St", "Burnside Av", "176 St", "Mt Eden Av", "170 St", "167 St", "161 St - Yankee Stadium", "149 St - Grand Concourse", "138 St - Grand Concourse", "125 St", "86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "Crown Heights - Utica Av"],
+         "5": ["Eastchester - Dyre Av", "Baychester Av", "Gun Hill Rd", "Pelham Pkwy", "Morris Park", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "135 St", "125 St", 
+"86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "President St", "Sterling St", "Winthrop St", "Church Av", "Beverly Rd", "Newkirk Av", "Flatbush Av - Brooklyn College"],
+         "6": ["Pelham Bay Park", "Buhre Av", "Middletown Rd", "Westchester Sq - E Tremont Av", "Zerega Av", "Castle Hill Av", "Parkchester", "St Lawrence Av", "Morrison Av- Sound View", "Elder Av", "Whitlock Av", "Hunts Point Av", "Longwood Av", "E 149 St", "E 143 St - St Mary's St", "Cypress Av", "Brook Av", "3 Av - 138 St", "125 St", "116 St", "110 St", "103 St", "96 St", "86 St", "77 St", "68 St - Hunter College", "59 St", "51 St", "Grand Central - 42 St", "33 St", "28 St", "23 St", "14 St - Union Sq", "Astor Pl", "Broadway-Lafayette St", "Spring St", "Canal St", "Brooklyn Bridge - City Hall"]}
+
+
+
+
