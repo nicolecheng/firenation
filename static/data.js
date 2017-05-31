@@ -1,28 +1,5 @@
 // Initialization
-var year = document.getElementById("year");
-var data = document.getElementById("data");
-var ns = "http://www.w3.org/2000/svg";
-
-var yearh = $(window).height() * 0.13;
-var yearw = $(window).width();
-var datah = $(window).height() * 0.80;
-var dataw = $(window).width();
-
-year.height = yearh;
-year.width = yearw;
-
-// Background
-var yearbg = document.createElementNS(ns, "rect");
-yearbg.setAttribute("width", yearw);
-yearbg.setAttribute("height", yearh);
-yearbg.setAttribute("style", "fill:rgb(239, 239, 200)");
-year.appendChild(yearbg);
-
-// =========================================
-// Year Bar
-years = [];
-var x = yearw / 2;
-var y = 61;
+var station_list = document.getElementById("list_station");
 
 var result = [];
 // Data Retrieval - By Year
@@ -40,23 +17,11 @@ var get_data = function(year) {
     return result;
 };
 
-var getFields = function(input, field) {
-    var output = [];
-    for (var i=0; i < input.length; ++i)
-        output.push(input[i][field]);
-    return output;
-};
-
-var colors = [ "LawnGreen", "LightSeaGreen", "MediumSlateBlue", "chocolate", "coral", "darksalmon", "mediumpurple", "MediumOrchid" ];
-
 //shows the data (popularity of the genre) accroding to year using divs as bar graph
 var data_years = function(year) {
   while (data.lastChild){
         data.removeChild(data.lastChild);
     }
-
-  var info = getFields(get_data(year), "song_count");
-  var text = getFields(get_data(year), "genre");
 
   var graph = d3.select("#data");
     graph.selectAll("div")
@@ -77,7 +42,7 @@ var data_years = function(year) {
 
 var changedate = function(e) {
     e.preventDefault();
-    
+
     var target = yearw / 2; // Target X Coordinate
     var deltax = target - e.target.getAttribute("x");
     // console.log(target); // Debugging
@@ -90,7 +55,7 @@ var changedate = function(e) {
     // ADD DATA BINDING HERE
     data_years(e.target.innerHTML);
     console.log(e.target.innerHTML);
-    
+
 };
 
 for (i = 1997; i < 2018; i++) {
