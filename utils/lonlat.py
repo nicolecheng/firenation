@@ -38,5 +38,5 @@ one = [["Van Cortlandt Park - 242 St", "40.889248", "-73.898583"],
        ["South Ferry Loop", "40.701411",  "-74.013205"]
        ]
 
-def one():
+def get_one():
     return one
