@@ -156,8 +156,44 @@ A14"135 St","40.817894","-73.947649"
 "Franklin Av", "40.670682", "-73.958131"
 "Crown Heights - Utica Av","40.668897", "-73.932942"
 ],
-         "5": ["Eastchester - Dyre Av", "Baychester Av", "Gun Hill Rd", "Pelham Pkwy", "Morris Park", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "135 St", "125 St", 
-"86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "President St", "Sterling St", "Winthrop St", "Church Av", "Beverly Rd", "Newkirk Av", "Flatbush Av - Brooklyn College"],
+         "5": [
+"Eastchester - Dyre Av", "40.8883", "-73.830834"
+"Baychester Av", "40.878663", "-73.838591"
+"Gun Hill Rd", "40.869526", "-73.846384"
+"Pelham Pkwy", "40.858985", "-73.855359"
+"Morris Park", "40.854364", "-73.860495"
+"E 180 St", "40.841894", "-73.873488"
+"West Farms Sq - E Tremont Av","40.840295", "-73.880049" 
+"174 St", "40.837288", "-73.887734"
+"Freeman St", "40.829993", "-73.891865"
+"Simpson St", "40.824073", "-73.893064"
+"Intervale Av","40.822181", "-73.896736" 
+"Prospect Av","40.819585", "-73.90177" 
+"Jackson Av", "40.81649", "-73.907807"
+"3 Av - 149 St", "40.816109", "-73.917757"
+"149 St - Grand Concourse","40.81841", "-73.926718" 
+"135 St", "40.814229", "-73.94077"
+"125 St", "40.807754", "-73.945495"
+"86 St", "40.779492", "-73.955589"
+"59 St", "40.762526", "-73.967967"
+"Grand Central - 42 St", "40.751776", "-73.976848"
+"14 St - Union Sq", "40.734673", "-73.989951"
+"Brooklyn Bridge - City Hall", "40.713065", "-74.004131"
+"Fulton St", "40.710368", "-74.009509"
+"Wall St", "40.707557", "-74.011862"
+"Bowling Green", "40.704817", "-74.014065"
+"Borough Hall", "40.692404", "-73.990151"
+"Nevins St", "40.688246", "-73.980492"
+"Atlantic Av - Barclays Ctr", "40.684359", "-73.977666"
+"Franklin Av", "40.670682", "-73.958131"
+"President St", "40.667883", "-73.950683"
+"Sterling St", "40.662742", "-73.95085"
+"Winthrop St", "40.656652", "-73.9502",
+"Church Av", "40.650843", "-73.949575"
+"Beverly Rd", "40.645098", "-73.948959"
+"Newkirk Av", "40.639967", "-73.948411"
+"Flatbush Av - Brooklyn College","40.632836", "-73.947642"
+],
          "6": ["Pelham Bay Park", "Buhre Av", "Middletown Rd", "Westchester Sq - E Tremont Av", "Zerega Av", "Castle Hill Av", "Parkchester", "St Lawrence Av", "Morrison Av- Sound View", "Elder Av", "Whitlock Av", "Hunts Point Av", "Longwood Av", "E 149 St", "E 143 St - St Mary's St", "Cypress Av", "Brook Av", "3 Av - 138 St", "125 St", "116 St", "110 St", "103 St", "96 St", "86 St", "77 St", "68 St - Hunter College", "59 St", "51 St", "Grand Central - 42 St", "33 St", "28 St", "23 St", "14 St - Union Sq", "Astor Pl", "Broadway-Lafayette St", "Spring St", "Canal St", "Brooklyn Bridge - City Hall"]}
 
 
