@@ -1,9 +1,15 @@
 import urllib2, json, unicodedata
+from utils import lonlat
 
-
+'''
 locations = [ ["40.785902", "-73.950896"], ["40.790171", "-73.947672"],
                  ["40.794809", "-73.944614"], ["40.798651", "-73.941621"],
                  ["40.804417", "-73.937265"]]
+'''
+
+locations = lonlat.get_one()
+
+#print locations
 
 api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 
@@ -14,11 +20,11 @@ api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 def get_times(destinations):
     distance_time = []
     for i in range(len(destinations) - 1):
-        lat_orig = destinations[i][0]
-        lon_orig = destinations[i][1]
+        lat_orig = destinations[i][1]
+        lon_orig = destinations[i][2]
 
-        lat_dest = destinations[i+1][0]
-        lon_dest = destinations[i+1][1]
+        lat_dest = destinations[i+1][1]
+        lon_dest = destinations[i+1][2]
 
         url = "https://maps.googleapis.com/maps/api/directions/json?"
         url += "origin=" + lat_orig + "," + lon_orig
@@ -41,8 +47,8 @@ def get_times(destinations):
     return distance_time
 
 l = get_times(locations)
-#for i in l:
-    #print i
+for i in l:
+    print i
 
 # returns the total time it takes to get from the origin to the final destination
 def get_total_time(distance_times):
