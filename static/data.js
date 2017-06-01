@@ -17,6 +17,28 @@ var get_data = function(year) {
     return result;
 };
 
+/***
+var add(){
+   dic = get_data(2017);
+   for station in dic{
+       display = document.createElement("div");
+       display.id = station;
+       display.addEventListener("click", geter);
+   }
+}
+
+var geter = function(){
+      dic = get_data(2017);
+      trains = dic[this.id];
+      for train in trains{
+         info = document.createElement();
+      }
+   }
+}
+
+***/
+
+
 //shows the data (popularity of the genre) accroding to year using divs as bar graph
 var data_years = function(year) {
   while (data.lastChild){
