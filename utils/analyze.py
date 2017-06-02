@@ -284,8 +284,16 @@ def get_all_arriving_trains(train):
 def one_down():
     times = []
     one = lonlat.get_one()
-    origin = [one[0][1],[one[0][2]]]
-    dest = [one[1][1],[one[1][2]]]
+    o = 0
+    d = 1
+    origin = [one[o][1],[one[o][2]]]
+    dest = [one[d][1],[one[d][2]]]
     while len(times) < len(one)-1:
-        origin
+        eta = map.distance(origin,dest)
+        times.append(eta)
+        o += 1
+        d += 1
+        origin = [one[o][1],one[o][2]]
+        dest = [one[d][1],one[d][2]]
+    return times
 '''
