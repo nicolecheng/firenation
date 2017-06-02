@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, redirect, url_for, request
-from utils import api, analyze
+from utils import analyze, map
 
 app = Flask(__name__)
 feed = analyze.get_feed()
@@ -13,15 +13,33 @@ def train(train_name):
     stops = analyze.get_stops(train_name)
     trains = analyze.get_all_arriving_trains(train_name)
     return render_template('train.html', stops = stops, trains = trains)
+
 ''' 
     info = {}
-    for a in stops{
+    for a in stops {
          direction = analyze.get_direction(a)
          arrivaltime = analyze.get_arrival_time(a)
          info[a] = infu
     }
 '''
-    
+
+# dictionary with one key
+# key is station name with underscore in place of space
+@app.route("/data/<station_id>/", methods = ['GET', 'POST'])
+def station(station_id):
+    station_name = analyze.get_station_name(station_id)
+    dict = info[station_name]
+    return dict
+
+# coordinates is lat + long
+# remember to split by +
+@app.route("/gps/<coordinates>/", methods = ['GET', 'POST'])
+def gps(coordinates):
+    coor = coordinates.split("+")
+    lat = coor[0]
+    lon = coor[1]
+    return 
+
 
 if __name__ == "__main__":
     app.debug = True

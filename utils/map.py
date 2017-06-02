@@ -61,4 +61,17 @@ def get_total_time(distance_times):
 
 #print get_total_time(l)
 
+# returns the total distance from the origin to the final destination
+# distance is in miles
+def get_total_distance(distance_times):
+    #print distance_times
+    total_distance = 0
+    for distance_time in distance_times:
+        d = distance_time[0][:-3]
+        unicodedata.normalize('NFKD', d).encode('ascii','ignore')
+        total_distance += float(d)
+    return total_distance
+
+#print get_total_distance(l)
+
 
