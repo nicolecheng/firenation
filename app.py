@@ -23,14 +23,6 @@ def train(train_name):
     }
 '''
 
-# dictionary with one key
-# key is station name with underscore in place of space
-@app.route("/data/<station_id>/", methods = ['GET', 'POST'])
-def station(station_id):
-    station_name = analyze.get_station_name(station_id)
-    dict = info[station_name]
-    return dict
-
 # coordinates is lat + long
 # remember to split by +
 @app.route("/gps/<coordinates>/", methods = ['GET', 'POST'])
