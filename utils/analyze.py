@@ -289,7 +289,7 @@ def one_down():
     origin = [one[o][1],[one[o][2]]]
     dest = [one[d][1],[one[d][2]]]
     while len(times) < len(one)-1:
-        eta = map.distance(origin,dest)
+        eta = map.get_times([origin,dest])
         times.append(eta)
         o += 1
         d += 1
