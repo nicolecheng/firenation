@@ -279,7 +279,7 @@ def get_all_arriving_trains(train):
     
 #print get_all_arriving_trains("6")
 
-
+'''
 #times between stations on the 1 line going downtown
 def one_down():
     times = []
@@ -295,9 +295,22 @@ def one_down():
         d += 1
         origin = [one[o][1],one[o][2]]
         dest = [one[d][1],one[d][2]]
+        print origin
     return times
 
 print one_down()
+'''
+def one_down():
+    ret = []
+    return ret.append(map.get_times(lonlat.get_one()))
+#print one_down()
+
+def one_up():
+    u = lonlat.get_one().reverse()
+    ret = []
+    return ret.append(map.get_times(u))
+#print one_up()
+
 
 #one train = [[dist,time],[dist,time],[dist,time]]
 

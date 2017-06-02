@@ -1,5 +1,5 @@
 import urllib2, json, unicodedata
-from utils import lonlat
+import lonlat
 
 '''
 locations = [ ["40.785902", "-73.950896"], ["40.790171", "-73.947672"],
