@@ -1,6 +1,7 @@
 from google.transit import gtfs_realtime_pb2
 from datetime import datetime
 import urllib, urllib2, json
+import lonlat,map
 
 feed = gtfs_realtime_pb2.FeedMessage()
 response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
@@ -26,7 +27,7 @@ e = feed.entity[0]
 def get_feed():
     return feed
 
-print get_feed()
+#print get_feed()
 
 '''
 # sample entity format
@@ -277,3 +278,27 @@ def get_all_arriving_trains(train):
     return new_stations
     
 #print get_all_arriving_trains("6")
+
+
+#times between stations on the 1 line going downtown
+def one_down():
+    times = []
+    one = lonlat.get_one()
+    o = 0
+    d = 1
+    origin = [one[o][1],[one[o][2]]]
+    dest = [one[d][1],[one[d][2]]]
+    while len(times) < len(one)-1:
+        eta = map.get_times([origin,dest])
+        times.append(eta)
+        o += 1
+        d += 1
+        origin = [one[o][1],one[o][2]]
+        dest = [one[d][1],one[d][2]]
+    return times
+
+print one_down()
+
+#one train = [[dist,time],[dist,time],[dist,time]]
+
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
