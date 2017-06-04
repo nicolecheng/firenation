@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, request
+from flask import Flask, render_template, session, redirect, url_for, request, jsonify
 from utils import analyze, map
 
 app = Flask(__name__)
@@ -11,8 +11,7 @@ def home():
 @app.route("/<train_name>/", methods = ['GET', 'POST'])
 def train(train_name):
     stops = analyze.get_stops(train_name)
-    trains = analyze.get_all_arriving_trains(train_name)
-    return render_template('train.html', stops = stops, trains = trains)
+    return render_template('train.html', stops = stops, train = train_name)
 
 ''' 
     info = {}
@@ -22,6 +21,16 @@ def train(train_name):
          info[a] = infu
     }
 '''
+
+# dictionary with one key
+# train_name is train name (1, 2, 3, ect.)
+# key is station name with underscore in place of space
+@app.route("/data/<train_name>/<station_id>/")
+def station(train_name, station_id):
+    station_name = station_id.replace("_", " ")
+    result = train_dict(train_name, station_name)
+    print result
+    return jsonify(result=result)
 
 # coordinates is lat + long
 # remember to split by +
