@@ -101,7 +101,7 @@ nicoleC -- 2017-06-04 @03:04
 	wrote get_dist(origin,destination,train_num,direction)
 
 yikaiW -- 2017-06-04 @10:20
-        added train_name to utils.py
+	added train_name to utils.py
 	added id to train_name
 	changed html for easier styling
 
@@ -109,8 +109,12 @@ jessicaY -- 2017-06-04 @13:30
 	added trains/station info and helper fxn for utils
 
 ziyanL -- 2017-06-04 @15:29
-        added gps.html
+	added gps.html
 
 nicoleC -- 2017-06-04 @15:50
 	finished train_dict(train_num,station_name)
 	modified utils.py to fit train_dict
+
+yikaiW -- 2017-06-04 @18:20
+	finished AJAX
+	tesing AJAX, removed utils
