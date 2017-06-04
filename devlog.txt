@@ -118,3 +118,4 @@ nicoleC -- 2017-06-04 @15:50
 yikaiW -- 2017-06-04 @18:20
 	finished AJAX
 	tesing AJAX, removed utils
+	editing gps.html
