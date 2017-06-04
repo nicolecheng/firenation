@@ -1,11 +1,11 @@
 // Initialization
 var station_list = document.getElementsByClassName("station");
-
+var train_name = document.getElementById("train_name").value
 var result = [];
 // Data Retrieval
 var get_data = function(station_id) {
     $.ajax({
-    	url: '/data/' + station_id + "/",
+    	url: '/data/' + train_name + "/" + station_id + "/",
     	dataType: 'json',
     	async: false,
     	success: function(data){
