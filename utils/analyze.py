@@ -351,8 +351,48 @@ def get_dist(origin,destination,train_num,direction):
 #print get_dist('59 St','174 St',5,'N')
 #print get_dist('Chambers St','34 St - Penn Station',1,'N')
 
-# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...]}
+
+def train_dict(train_num,station_name):
+    n = get_trains(train_num)
+    up = n[0]
+    down = n[1]
+    d = {}
+    if train_num==1:
+        train_list=STOPS["1"]
+    elif train_num==2:
+        train_list=STOPS["2"]
+    elif train_num==3:
+        train_list=STOPS["3"]
+    elif train_num==4:
+        train_list=STOPS["4"]
+    elif train_num==5:
+        train_list=STOPS["5"]
+    elif train_num==6:
+        train_list=STOPS["6"]
+    rev=train_list[::-1]
+    m = []
+    for i in up:
+        if i in rev and rev.index(i)<rev.index(station_name) and not(rev.index(i)==0):
+            prev = rev[rev.index(i)-1]
+            j=(get_dist(i,station_name,train_num,'N'))
+            j.append(prev)
+            j.append('uptown')
+            m.append(j)
+    for i in down:
+        if i in train_list and train_list.index(i)<train_list.index(station_name) and not (train_list.index(i)==0):
+            prev=train_list[train_list.index(i)-1]
+            j=get_dist(i,station_name,train_num,'S')
+            j.append(prev)
+            j.append('downtown')
+            m.append(j)
+    d[station_name] = m
+    return d
+#print train_dict(2,'Chambers St')
+
 '''
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
+
 def train_dict(train_num):
     n = get_trains(train_num)
     up = n[0]
@@ -373,17 +413,22 @@ def train_dict(train_num):
     rev=train_list[::-1]
     for stop in train_list:
         m = []
-        #print rev.index(stop)
         for i in up:
             if rev.index(i)<rev.index(stop) and not(rev.index(i)==0):
                 prev = rev[rev.index(i)-1]
-                m.append(get_dist(i,stop,train_num,'N').append([prev,'uptown']))
+                j=(get_dist(i,stop,train_num,'N'))
+                j.append(prev)
+                j.append('uptown')
+                m.append(j)
+        for i in down:
+            if train_list.index(i)<train_list.index(stop) and not (train_list.index(i)==0):
+                prev=train_list[train_list.index(i)-1]
+                j=get_dist(i,stop,train_num,'S')
+                j.append(prev)
+                j.append('downtown')
+                m.append(j)
         d[stop] = m
-    
     return d
-
-train_dict(1)
-
 '''
 
 '''
@@ -408,13 +453,12 @@ def one_down():
 print one_down()
 '''
 
-
+'''
 # returns a list of how far each station is from one another on 1 downtown train
 def one_down():
     ret = map.get_times(lonlat.get_one())
     return ret
-p= lonlat.get_one()
-map.get_times(p)
+
 def one_up():
     u = lonlat.get_one()
     u.reverse()
@@ -471,6 +515,7 @@ def six_up():
     ret = map.get_times(u)
     return ret
 '''
+'''
 def error_count(down,up):
     d = []
     u = []
@@ -488,27 +533,8 @@ def error_count(down,up):
             print count
         count+=1
     return error
-print error_count(four_down(),four_up())
-'''        
-def error_count(down,up):
-    d = []
-    u = []
-    for i in down:
-        d.append(i[0].split()[0])
-    for i in up:
-        u.append(i[0].split()[0])
-    u = u[::-1]
-    count = 0
-    error=0
-    while count < len(d):
-        if not d[count] == u[count]:
-            error+=1
-            if(float(d[count])-float(u[count])>0.1 or float(u[count])-float(d[count])>0.1):
-                print str(float(d[count]) - float(u[count]))
-                return False
-        count+=1
-    #return error
-    return True    
+#print error_count(four_down(),four_up())
+'''           
 '''
 
 def write_file():

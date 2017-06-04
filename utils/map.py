@@ -37,14 +37,15 @@ def get_times(destinations):
         d = json.loads(response)
 
         
-##        for x in d["routes"][0]["legs"][0]:
-##            print x
+        #for x in d["routes"][0]["legs"][0]:
+        #    print x
         
         distance = d["routes"][0]["legs"][0]["distance"]["text"]
         time = d["routes"][0]["legs"][0]["duration"]["text"]
         distance_time.append([ distance, time ])
 
     return distance_time
+
 '''
 l = get_times(locations)
 for i in l:
