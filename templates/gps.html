@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/overwrite.css">
+        <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Bungee+Shade|Permanent+Marker" rel="stylesheet">
+
+        <script src="../static/bootstrap/js/jquery.min.js"></script>
+        <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+        <title>Fire Nation</title>
+    </head>
+<body>
+  <nav class="navbar navbar-default navbar-top">
+           <div class="container-fluid">
+               <div class="navbar-header">
+                   <a class="navbar-brand" href="/">MTA Train Tracker</a>
+               </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="page-scroll dropdown">
+                        <a id="train" class="dropdown-toggle" type="button" data-toggle="dropdown">Trains
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="/1/">1</a></li>
+                          <li><a href="/2/">2</a></li>
+                          <li><a href="/3/">3</a></li>
+                          <li><a href="/4/">4</a></li>
+                          <li><a href="/5/">5</a></li>
+                          <li><a href="/6/">6</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+   </nav>
+  <input type="hidden" id="train_name" value="1">
+   <ul class="list-group train">
+     <li class="list-group-item">
+       <a class="dropdown-toggle station" type="button" data-toggle="dropdown" id="Penn Station">Penn Station<span class="caret"></a></span>
+       <ul class="dropdown-menu">
+  <div class="container-fluid">
+  <div id = "tp1" class="panel  panel-primary">
+      <div class="panel-heading"> <center>Incoming Trains<center></div>   
+  <table id = "gpstb1" class="table table-condensed table-hover table-striped">
+     <div class="container-fluid">
+     <thead>
+        <td class="col-md-4"><h1>Train</h1></td>
+        <td class="col-md-4"><h1>ETA</h1></td>
+        <td class="col-md-4"><h1>Distance</h1></td>
+     </thead>
+     <tr>
+        <td class="col-md-4">1</th>
+        <td class="col-md-4">4 minutes</td>
+        <td class="col-md-4">1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">2</th>
+        <td class="col-md-4">5 minutes</td>
+        <td class="col-md-4">2 miles</td>
+     </tr>
+     </div>
+     <tr>
+        <td class="col-md-4">3</th>
+        <td class="col-md-4">6 minutes</td>
+        <td class="col-md-4">0.1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">4</th>
+        <td class="col-md-4">12 minutes</td>
+        <td class="col-md-4">1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">4</th>
+        <td class="col-md-4">3 minutes</td>
+        <td class="col-md-4">0.5 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">6</th>
+        <td class="col-md-4">1 minutes</td>
+        <td class="col-md-4">2 miles</td>
+     </tr>
+     </div>
+  </table>
+</div>
+</div>
+</div>
+   <script src="../static/data.js"></script>
+</ul>
+     </li>
+  </ul>
+  <input type="hidden" id="train_name" value="1">
+   <ul class="list-group train">
+     <li class="list-group-item">
+       <a class="dropdown-toggle station" type="button" data-toggle="dropdown" id="Chamber Street">Chamber Street<span class="caret"></a></span>
+       <ul class="dropdown-menu">
+  <div class="container-fluid">
+  <div id = "tp1" class="panel  panel-primary">
+      <div class="panel-heading"> <center>Incoming Trains<center></div>   
+  <table id = "gpstb1" class="table table-condensed table-hover table-striped">
+     <div class="container-fluid">
+     <thead>
+        <td class="col-md-4"><h1>Train</h1></td>
+        <td class="col-md-4"><h1>ETA</h1></td>
+        <td class="col-md-4"><h1>Distance</h1></td>
+     </thead>
+     <tr>
+        <td class="col-md-4">1</th>
+        <td class="col-md-4">4 minutes</td>
+        <td class="col-md-4">1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">2</th>
+        <td class="col-md-4">5 minutes</td>
+        <td class="col-md-4">2 miles</td>
+     </tr>
+     </div>
+     <tr>
+        <td class="col-md-4">3</th>
+        <td class="col-md-4">6 minutes</td>
+        <td class="col-md-4">0.1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">4</th>
+        <td class="col-md-4">12 minutes</td>
+        <td class="col-md-4">1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">4</th>
+        <td class="col-md-4">3 minutes</td>
+        <td class="col-md-4">0.5 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">6</th>
+        <td class="col-md-4">1 minutes</td>
+        <td class="col-md-4">2 miles</td>
+     </tr>
+     </div>
+  </table>
+</div>
+</div>
+</div>
+   <script src="../static/data.js"></script>
+</ul>
+     </li>
+  </ul>
+  <input type="hidden" id="train_name" value="1">
+   <ul class="list-group train">
+     <li class="list-group-item">
+       <a class="dropdown-toggle station" type="button" data-toggle="dropdown" id="East Broadway">East Broadway<span class="caret"></a></span>
+       <ul class="dropdown-menu">
+  <div class="container-fluid">
+  <div id = "tp1" class="panel  panel-primary">
+      <div class="panel-heading"> <center>Incoming Trains<center></div>   
+  <table id = "gpstb1" class="table table-condensed table-hover table-striped">
+     <div class="container-fluid">
+     <thead>
+        <td class="col-md-4"><h1>Train</h1></td>
+        <td class="col-md-4"><h1>ETA</h1></td>
+        <td class="col-md-4"><h1>Distance</h1></td>
+     </thead>
+     <tr>
+        <td class="col-md-4">1</th>
+        <td class="col-md-4">4 minutes</td>
+        <td class="col-md-4">1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">2</th>
+        <td class="col-md-4">5 minutes</td>
+        <td class="col-md-4">2 miles</td>
+     </tr>
+     </div>
+     <tr>
+        <td class="col-md-4">3</th>
+        <td class="col-md-4">6 minutes</td>
+        <td class="col-md-4">0.1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">4</th>
+        <td class="col-md-4">12 minutes</td>
+        <td class="col-md-4">1 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">4</th>
+        <td class="col-md-4">3 minutes</td>
+        <td class="col-md-4">0.5 miles</td>
+     </tr>
+     <tr>
+        <td class="col-md-4">6</th>
+        <td class="col-md-4">1 minutes</td>
+        <td class="col-md-4">2 miles</td>
+     </tr>
+     </div>
+  </table>
+  </div>
+  </div>
+  
+  <div class="container-fluid">
+  <div id = "tp2" class="panel  panel-primary">
+      <div class="panel-heading"> <center>Trains at the station<center></div>
+  <table id = "gpstb2" class="table table-condensed table-hover table-striped">
+     <div class="container-fluid">
+     <thead>
+     <tr>
+        <td class="col-md-6"><center><h1>Train</h1></center></td>
+     </tr>
+     </thead>
+     <tr>
+        <td class="col-md-6"><center>1</center></td>
+     </tr>
+     <tr>
+        <td class="col-md-6"><center>1</center></td>
+     </tr>
+     <tr>
+        <td class="col-md-6"><center>3</center></td>
+     </tr>
+     </div>
+  </table>
+</div>
+</div>
+</div>
+   <script src="../static/data.js"></script>
+</ul>
+     </li>
+  </ul>
+</body>
+</html>
