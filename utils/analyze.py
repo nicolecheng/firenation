@@ -279,6 +279,79 @@ def get_all_arriving_trains(train):
     
 #print get_all_arriving_trains("6")
 
+
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
+def get_dist(origin,destination,train_num,direction):
+    line = []
+    if train_num==1:
+        if direction=='N':
+            p=STOPS["1"]
+            line=p[::-1]
+            t=lonlat.get_u1()
+        else:
+            line=STOPS["1"]
+            t=lonlat.get_d1()
+    elif train_num==2:
+        if direction=='N':
+            p=STOPS["2"]
+            line=p[::-1]
+            t=lonlat.get_u2()
+        else:
+            line=STOPS["2"]
+            t=lonlat.get_d2()
+    elif train_num==3:
+        if direction=='N':
+            p=STOPS["3"]
+            line=p[::-1]
+            t=lonlat.get_u3()
+        else:
+            line=STOPS["3"]
+            t=lonlat.get_d3()
+    elif train_num==4:
+        if direction=='N':
+            p=STOPS["4"]
+            line=p[::-1]
+            t=lonlat.get_u4()
+        else:
+            line=STOPS["4"]
+            t=lonlat.get_d4()
+    elif train_num==5:
+        if direction=='N':
+            p=STOPS["5"]
+            line=p[::-1]
+            t=lonlat.get_u5()
+        else:
+            line=STOPS["5"]
+            t=lonlat.get_d5()
+    elif train_num==6:
+        if direction=='N':
+            p=STOPS["6"]
+            line=p[::-1]
+            t=lonlat.get_u6()
+        else:
+            line=STOPS["6"]
+            t=lonlat.get_d6()
+    ori=line.index(origin)
+    dest=line.index(destination)
+    time=0
+    while ori<dest:
+        m=t[ori][1].split()[0]
+        time+=int(m)
+        ori+=1
+    return time
+
+#print get_dist('Van Cortlandt Park - 242 St','Marble Hill - 225 St',1,'S')
+#print get_dist('Canal St','33 St',6,'N')
+#print get_dist('Park Pl','145 St',3,'N')
+#print get_dist('59 St','174 St',5,'N')
+#print get_dist('Chambers St','34 St - Penn Station',1,'N')
+
+'''
+def train_dict(train_list):
+    d = {}
+    for stop in 
+'''
+
 '''
 #times between stations on the 1 line going downtown
 def one_down():
@@ -362,12 +435,10 @@ def six_up():
     u.reverse()
     ret = map.get_times(u)
     return ret
-'''
 
-'''
-f = open('trains.txt','w')
-f.write("d1="+str(one_down())+"\nu1="+str(one_up())+"\nd2="+str(two_down())+"\nu2="+str(two_up())+"\nd3="+str(three_down())+"\nu3="+str(three_up())+"\nd4="+str(four_down())+"\nu4="+str(four_up())+"\nd5="+str(five_down())+"\nu5="+str(five_up())+"\nd6="+str(six_down())+"\nu6="+str(six_up()))
+f = open('trains2.txt','w')
+f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up()))
 f.close()
+
 '''
 
-# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
