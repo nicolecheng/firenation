@@ -52,3 +52,18 @@ h3 img {
   padding-left: 10%;
   width: 100%;
 }
+
+.box {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+.drop_left {
+  display: block;
+  float: left;
+}
+.drop_right {
+  display: block;
+  float: right;
+}

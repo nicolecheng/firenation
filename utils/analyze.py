@@ -351,8 +351,50 @@ def get_dist(origin,destination,train_num,direction):
 #print get_dist('59 St','174 St',5,'N')
 #print get_dist('Chambers St','34 St - Penn Station',1,'N')
 
-# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...]}
+
+def train_dict(train_num,station_name):
+    n = get_trains(train_num)
+    up = n[0]
+    down = n[1]
+    d = {}
+    if train_num==1:
+        train_list=STOPS["1"]
+    elif train_num==2:
+        train_list=STOPS["2"]
+    elif train_num==3:
+        train_list=STOPS["3"]
+    elif train_num==4:
+        train_list=STOPS["4"]
+    elif train_num==5:
+        train_list=STOPS["5"]
+    elif train_num==6:
+        train_list=STOPS["6"]
+    rev=train_list[::-1]
+    m = []
+    for i in up:
+        if i in rev and rev.index(i)<rev.index(station_name) and not(rev.index(i)==0):
+            prev = rev[rev.index(i)-1]
+            j=(get_dist(i,station_name,train_num,'N'))
+            j.append(prev)
+            j.append('uptown')
+            if not j in m:
+                m.append(j)
+    for i in down:
+        if i in train_list and train_list.index(i)<train_list.index(station_name) and not (train_list.index(i)==0):
+            prev=train_list[train_list.index(i)-1]
+            j=get_dist(i,station_name,train_num,'S')
+            j.append(prev)
+            j.append('downtown')
+            if not j in m:
+                m.append(j)
+    d[station_name] = sorted(m)
+    return d
+#print train_dict(2,'Chambers St')
+
 '''
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
+
 def train_dict(train_num):
     n = get_trains(train_num)
     up = n[0]
@@ -373,17 +415,22 @@ def train_dict(train_num):
     rev=train_list[::-1]
     for stop in train_list:
         m = []
-        #print rev.index(stop)
         for i in up:
             if rev.index(i)<rev.index(stop) and not(rev.index(i)==0):
                 prev = rev[rev.index(i)-1]
-                m.append(get_dist(i,stop,train_num,'N').append([prev,'uptown']))
+                j=(get_dist(i,stop,train_num,'N'))
+                j.append(prev)
+                j.append('uptown')
+                m.append(j)
+        for i in down:
+            if train_list.index(i)<train_list.index(stop) and not (train_list.index(i)==0):
+                prev=train_list[train_list.index(i)-1]
+                j=get_dist(i,stop,train_num,'S')
+                j.append(prev)
+                j.append('downtown')
+                m.append(j)
         d[stop] = m
-    
     return d
-
-train_dict(1)
-
 '''
 
 '''
@@ -469,10 +516,57 @@ def six_up():
     u.reverse()
     ret = map.get_times(u)
     return ret
-
-f = open('trains2.txt','w')
-f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up()))
-f.close()
-
+'''
+'''
+def error_count(down,up):
+    d = []
+    u = []
+    for i in down:
+        d.append(i[0].split()[0])
+    for i in up:
+        u.append(i[0].split()[0])
+    u = u[::-1]
+    count = 0
+    error=0
+    while count < len(d):
+        if not d[count] == u[count]:
+            error+=1
+            print str(d[count]) + " v " +str(u[count])
+            print count
+        count+=1
+    return error
+#print error_count(four_down(),four_up())
+'''           
 '''
 
+def write_file():
+    f = open('train.txt','w')
+    one=[one_down(),one_up()]
+    two=[two_down(),two_up()]
+    three=[three_down(),three_up()]
+    four=[four_down(),four_up()]
+    five=[five_down(),five_up()]
+    six=[six_down(),six_up()]
+    s=''
+    if(error_count(one[0],one[1])):
+        s+="d1="+str(one[0])+"\n\nu1="+str(one[1])
+    if(error_count(two[0],two[1])):
+        s+="\n\nd2="+str(two[0])+"\n\nu2="+str(two[1])
+    if(error_count(three[0],three[1])):
+        s+="\n\nd3="+str(three[0])+"\n\nu3="+str(three[1])
+    if(error_count(four[0],four[1])):
+        s+="\n\nd4="+str(four[0])+"\n\nu4="+str(four[1])
+    if(error_count(five[0],five[1])):
+        s+="\n\nd5="+str(five[0])+"\n\nu5="+str(five[1])
+    if(error_count(six[0],six[1])):
+        s+="\n\nd6="+str(six[0])+"\n\nu6="+str(six[1])
+    f.write(s)
+    f.close()
+
+write_file()
+'''
+'''
+f = open('train.txt','w')
+f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up())) 
+f.close()
+'''

@@ -9,7 +9,7 @@ utils = Blueprint('utils', __name__)
 def station(station_id):
     station_name = analyze.get_station_name(station_id)
     result = info[station_name]
-    return jsonify(result=result)
+    return jsonify(result=train_dict(train_name,station_name))
 
 # returns a string with all spaces replaced with underscores
 def convert_spaces(s):
