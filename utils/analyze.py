@@ -221,6 +221,8 @@ def all_trains():
 
 all_trains()
 
+#print alltrains
+
 #print get_station_name(alltrains[100][1][0])
 
 # returns a list of all stops that the trains are at
@@ -231,8 +233,8 @@ def get_train(number,direction):
         if "_"+str(number)+".."+str(direction) in t[0]:
             for s in t[1]:
                 m = get_station_name(s)
-                if m not in stop_names:
-                    stop_names.append(m)
+                #if m not in stop_names:
+                stop_names.append(m)
     return stop_names
 
 # returns both uptown and downtown trains
@@ -245,13 +247,13 @@ def get_trains(number):
             if "..N" in t[0]:
                 for s in t[1]:
                     m = get_station_name(s)
-                    if m not in up:
-                        up.append(m)
+                    #if m not in up:
+                    up.append(m)
             elif "..S" in t[0]:
                 for s in t[1]:
                     m = get_station_name(s)
-                    if m not in down:
-                        down.append(m)
+                    #if m not in down:
+                    down.append(m)
     return [up,down]
                         
 #print get_train(1,'S')
@@ -280,7 +282,7 @@ def get_all_arriving_trains(train):
 #print get_all_arriving_trains("6")
 
 
-# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
+# returns [minutes,miles] between the given stations
 def get_dist(origin,destination,train_num,direction):
     line = []
     if train_num==1:
@@ -334,11 +336,14 @@ def get_dist(origin,destination,train_num,direction):
     ori=line.index(origin)
     dest=line.index(destination)
     time=0
+    distance=0.0
     while ori<dest:
-        m=t[ori][1].split()[0]
-        time+=int(m)
+        minutes=t[ori][1].split()[0]
+        time+=int(minutes)
+        miles=t[ori][0].split()[0]
+        distance+=float(miles)
         ori+=1
-    return time
+    return [time,distance]
 
 #print get_dist('Van Cortlandt Park - 242 St','Marble Hill - 225 St',1,'S')
 #print get_dist('Canal St','33 St',6,'N')
@@ -346,10 +351,39 @@ def get_dist(origin,destination,train_num,direction):
 #print get_dist('59 St','174 St',5,'N')
 #print get_dist('Chambers St','34 St - Penn Station',1,'N')
 
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
 '''
-def train_dict(train_list):
+def train_dict(train_num):
+    n = get_trains(train_num)
+    up = n[0]
+    down = n[1]
     d = {}
-    for stop in 
+    if train_num==1:
+        train_list=STOPS["1"]
+    elif train_num==2:
+        train_list=STOPS["2"]
+    elif train_num==3:
+        train_list=STOPS["3"]
+    elif train_num==4:
+        train_list=STOPS["4"]
+    elif train_num==5:
+        train_list=STOPS["5"]
+    elif train_num==6:
+        train_list=STOPS["6"]
+    rev=train_list[::-1]
+    for stop in train_list:
+        m = []
+        #print rev.index(stop)
+        for i in up:
+            if rev.index(i)<rev.index(stop) and not(rev.index(i)==0):
+                prev = rev[rev.index(i)-1]
+                m.append(get_dist(i,stop,train_num,'N').append([prev,'uptown']))
+        d[stop] = m
+    
+    return d
+
+train_dict(1)
+
 '''
 
 '''
