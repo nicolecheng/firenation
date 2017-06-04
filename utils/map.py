@@ -45,11 +45,11 @@ def get_times(destinations):
         distance_time.append([ distance, time ])
 
     return distance_time
-
+'''
 l = get_times(locations)
 for i in l:
     print i
-
+'''
 # returns the total time it takes to get from the origin to the final destination
 def get_total_time(distance_times):
     total_time = 0

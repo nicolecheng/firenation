@@ -300,17 +300,23 @@ def one_down():
 
 print one_down()
 '''
+
+# returns a list of how far each station is from one another on 1 downtown train
 def one_down():
-    ret = []
-    return ret.append(map.get_times(lonlat.get_one()))
+    ret = map.get_times(lonlat.get_one())
+    return ret
 #print one_down()
 
+# returns a list of how far each station is from one another on 1 uptown train
+
 def one_up():
-    u = lonlat.get_one().reverse()
-    ret = []
-    return ret.append(map.get_times(u))
+    u = lonlat.get_one()
+    u.reverse()
+    ret = map.get_times(u)
+    return ret
 #print one_up()
 
+#print len(lonlat.get_one()[0])
 
 #one train = [[dist,time],[dist,time],[dist,time]]
 
