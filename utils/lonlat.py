@@ -312,3 +312,16 @@ u6=[[u'0.7 mi', u'6 mins'], [u'0.7 mi', u'6 mins'], [u'0.5 mi', u'4 mins'], [u'0
 
 def get_u6():
     return u6
+
+def get_possible_trains(station_name):
+    types = [one, two, three, four, five, six]
+    trains = []
+    for type in types:
+        for station in type:
+            if station[0] == station_name:
+                if len(station[3]) > len(trains):
+                    trains = station[3]
+    return trains
+
+#print get_possible_trains("Chambers St")
+#print get_possible_trains("Atlantic Av - Barclays Ctr")
