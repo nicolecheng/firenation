@@ -7,5 +7,5 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    window.location = "train.html/" + position.coords.latitude + "+" + position.coords.longitude;
+    window.location = "/gps/" + position.coords.latitude + "+" + position.coords.longitude + "/";
 }
