@@ -408,12 +408,13 @@ def one_down():
 print one_down()
 '''
 
-'''
+
 # returns a list of how far each station is from one another on 1 downtown train
 def one_down():
     ret = map.get_times(lonlat.get_one())
     return ret
-
+p= lonlat.get_one()
+map.get_times(p)
 def one_up():
     u = lonlat.get_one()
     u.reverse()
@@ -469,10 +470,75 @@ def six_up():
     u.reverse()
     ret = map.get_times(u)
     return ret
-
-f = open('trains2.txt','w')
-f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up()))
-f.close()
-
+'''
+def error_count(down,up):
+    d = []
+    u = []
+    for i in down:
+        d.append(i[0].split()[0])
+    for i in up:
+        u.append(i[0].split()[0])
+    u = u[::-1]
+    count = 0
+    error=0
+    while count < len(d):
+        if not d[count] == u[count]:
+            error+=1
+            print str(d[count]) + " v " +str(u[count])
+            print count
+        count+=1
+    return error
+print error_count(four_down(),four_up())
+'''        
+def error_count(down,up):
+    d = []
+    u = []
+    for i in down:
+        d.append(i[0].split()[0])
+    for i in up:
+        u.append(i[0].split()[0])
+    u = u[::-1]
+    count = 0
+    error=0
+    while count < len(d):
+        if not d[count] == u[count]:
+            error+=1
+            if(float(d[count])-float(u[count])>0.1 or float(u[count])-float(d[count])>0.1):
+                print str(float(d[count]) - float(u[count]))
+                return False
+        count+=1
+    #return error
+    return True    
 '''
 
+def write_file():
+    f = open('train.txt','w')
+    one=[one_down(),one_up()]
+    two=[two_down(),two_up()]
+    three=[three_down(),three_up()]
+    four=[four_down(),four_up()]
+    five=[five_down(),five_up()]
+    six=[six_down(),six_up()]
+    s=''
+    if(error_count(one[0],one[1])):
+        s+="d1="+str(one[0])+"\n\nu1="+str(one[1])
+    if(error_count(two[0],two[1])):
+        s+="\n\nd2="+str(two[0])+"\n\nu2="+str(two[1])
+    if(error_count(three[0],three[1])):
+        s+="\n\nd3="+str(three[0])+"\n\nu3="+str(three[1])
+    if(error_count(four[0],four[1])):
+        s+="\n\nd4="+str(four[0])+"\n\nu4="+str(four[1])
+    if(error_count(five[0],five[1])):
+        s+="\n\nd5="+str(five[0])+"\n\nu5="+str(five[1])
+    if(error_count(six[0],six[1])):
+        s+="\n\nd6="+str(six[0])+"\n\nu6="+str(six[1])
+    f.write(s)
+    f.close()
+
+write_file()
+'''
+'''
+f = open('train.txt','w')
+f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up())) 
+f.close()
+'''
