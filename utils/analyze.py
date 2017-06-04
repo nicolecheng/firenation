@@ -301,23 +301,73 @@ def one_down():
 print one_down()
 '''
 
+'''
 # returns a list of how far each station is from one another on 1 downtown train
 def one_down():
     ret = map.get_times(lonlat.get_one())
     return ret
-#print one_down()
-
-# returns a list of how far each station is from one another on 1 uptown train
 
 def one_up():
     u = lonlat.get_one()
     u.reverse()
     ret = map.get_times(u)
     return ret
-#print one_up()
 
-#print len(lonlat.get_one()[0])
+def two_down():
+    ret = map.get_times(lonlat.get_two())
+    return ret
 
-#one train = [[dist,time],[dist,time],[dist,time]]
+def two_up():
+    u = lonlat.get_two()
+    u.reverse()
+    ret = map.get_times(u)
+    return ret
+
+def three_down():
+    ret = map.get_times(lonlat.get_three())
+    return ret
+
+def three_up():
+    u = lonlat.get_three()
+    u.reverse()
+    ret = map.get_times(u)
+    return ret
+
+def four_down():
+    ret = map.get_times(lonlat.get_four())
+    return ret
+
+def four_up():
+    u = lonlat.get_four()
+    u.reverse()
+    ret = map.get_times(u)
+    return ret
+
+def five_down():
+    ret = map.get_times(lonlat.get_five())
+    return ret
+
+def five_up():
+    u = lonlat.get_five()
+    u.reverse()
+    ret = map.get_times(u)
+    return ret
+
+def six_down():
+    ret = map.get_times(lonlat.get_six())
+    return ret
+
+def six_up():
+    u = lonlat.get_six()
+    u.reverse()
+    ret = map.get_times(u)
+    return ret
+'''
+
+'''
+f = open('trains.txt','w')
+f.write("d1="+str(one_down())+"\nu1="+str(one_up())+"\nd2="+str(two_down())+"\nu2="+str(two_up())+"\nd3="+str(three_down())+"\nu3="+str(three_up())+"\nd4="+str(four_down())+"\nu4="+str(four_up())+"\nd5="+str(five_down())+"\nu5="+str(five_up())+"\nd6="+str(six_down())+"\nu6="+str(six_up()))
+f.close()
+'''
 
 # {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
