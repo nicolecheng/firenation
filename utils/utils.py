@@ -10,3 +10,9 @@ def station(station_id):
     station_name = analyze.get_station_name(station_id)
     result = info[station_name]
     return jsonify(result=result)
+
+# returns a string with all spaces replaced with underscores
+def convert_spaces(s):
+    return s.replace(" ", "_")
+
+#print convert_spaces("does this work")
