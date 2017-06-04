@@ -378,15 +378,17 @@ def train_dict(train_num,station_name):
             j=(get_dist(i,station_name,train_num,'N'))
             j.append(prev)
             j.append('uptown')
-            m.append(j)
+            if not j in m:
+                m.append(j)
     for i in down:
         if i in train_list and train_list.index(i)<train_list.index(station_name) and not (train_list.index(i)==0):
             prev=train_list[train_list.index(i)-1]
             j=get_dist(i,station_name,train_num,'S')
             j.append(prev)
             j.append('downtown')
-            m.append(j)
-    d[station_name] = m
+            if not j in m:
+                m.append(j)
+    d[station_name] = sorted(m)
     return d
 #print train_dict(2,'Chambers St')
 
