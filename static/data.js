@@ -33,7 +33,7 @@ var append_data = function(data, station_id) {
       }
   }
 
-
+  
 };
 
 for( var i = 0; i < station_list.length; i++ ) {
