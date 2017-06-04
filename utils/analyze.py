@@ -392,6 +392,32 @@ def train_dict(train_num,station_name):
     return d
 #print train_dict(2,'Chambers St')
 
+api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
+# returns the nearest train station within a 400 m radius given a latitude and longitude
+def nearest_station(lat,lon):
+    lat = float(lat)
+    lon = float(lon)
+    head = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+    mid = "key=%s&location=%f,%f" % (api_key, lat, lon)
+    end = "&radius=400&language=zh-TW&types=subway_station"
+    new_url = head + mid + end
+    page = urllib2.urlopen(new_url).read()
+    
+    places = json.loads(page) 
+    if places['status'] == 'OK':
+        for result in places['results']:
+            place_id = result['place_id']
+            
+            head = "https://maps.googleapis.com/maps/api/place/details/"
+            mid = "json?key=%s&placeid=%s" % (api_key, place_id)
+            end = "&language=zh-TW"
+            new_url = head + mid + end
+            page = urllib2.urlopen(new_url).read()
+            detail = json.loads(page)
+
+            station = detail['result']['name']
+    return station
+
 '''
 # {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
 
