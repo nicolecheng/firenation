@@ -18,7 +18,7 @@ var get_data = function(station_id) {
 };
 
 var append_data = function(data, station_id) {
-  var element = document.getElementById(station_id);
+  var element = d3.select("#" + station_id);
   var list_trains = data[station_id];
 
   var uptown_trains = [];
@@ -33,7 +33,7 @@ var append_data = function(data, station_id) {
       }
   }
 
-  
+
 };
 
 for( var i = 0; i < station_list.length; i++ ) {
