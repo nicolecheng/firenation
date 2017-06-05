@@ -13,14 +13,6 @@ def train(train_name):
     stops = analyze.get_stops(train_name)
     return render_template('train.html', stops = stops, train = train_name)
 
-''' 
-    info = {}
-    for a in stops {
-         direction = analyze.get_direction(a)
-         arrivaltime = analyze.get_arrival_time(a)
-         info[a] = infu
-    }
-'''
 
 # dictionary with one key
 # train_name is train name (1, 2, 3, ect.)
