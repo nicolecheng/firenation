@@ -1,7 +1,7 @@
 from google.transit import gtfs_realtime_pb2
 from datetime import datetime
-import urllib, urllib2, json
-import lonlat,map
+import urllib, urllib2, json, math
+import lonlat, map
 
 feed = gtfs_realtime_pb2.FeedMessage()
 response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
@@ -296,6 +296,16 @@ def get_all_arriving_trains(train):
 
 #print get_all_arriving_trains("6")
 
+def get_distance_between_coordinates(lat_orig, long_orig, lat_dest, long_dest):
+    earth_radius = 6371e3
+    lat1_rad = math.radians(float(lat_orig))
+    lat2_rad = math.radians(float(lat_dest))
+    delta_lat = math.radians(float(lat_dest) - float(lat_orig))
+    delta_long = math.radians(float(long_dest) - float(long_orig))
+
+    a = math.sin(delta_lat/2) * math.sin(delta_lat/2) + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(delta_long/2) * math.sin(delta_long/2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    return earth_radius * c
 
 # returns [minutes,miles] between the given stations
 def get_dist(origin,destination,train_num,direction):
