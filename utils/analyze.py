@@ -1,7 +1,8 @@
 from google.transit import gtfs_realtime_pb2
-from datetime import datetime
+from datetime import datetime, date
 import urllib, urllib2, json, math
-import lonlat, map
+import lonlat, map, unicodedata
+from operator import itemgetter
 
 feed = gtfs_realtime_pb2.FeedMessage()
 response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
@@ -94,6 +95,20 @@ def get_arrival_time(entity):
 
 #print "Arrival Time: " + str(get_arrival_time(e))
 
+'''
+# returns estimated arrival time in hour:minute:second
+def get_eta(entity):
+    arrival_time = get_arrival_time(entity)
+    #print arrival_time
+    time_now = datetime.now().strftime("%H:%M:%S")
+    #print time_now
+    FMT = "%H:%M:%S"
+    eta = datetime.strptime(arrival_time, FMT) - datetime.strptime(time_now, FMT)
+    return eta
+
+#print "ETA: " + str(get_eta(e))
+'''
+
 # returns a list of all the stops for a given train
 def get_stops(train):
     return STOPS[str(train)]
@@ -175,6 +190,35 @@ def get_arrival_times(stop_id):
     return d["result"]["arrivals"]
 
 #print "Arrival Times: " + str(get_arrival_times(sid))
+
+# returns the estimated arrival times given the stop id
+def get_etas(stop_id):
+    arrival_times = get_arrival_times(stop_id)
+    time_now = datetime.now().strftime("%H:%M:%S")
+    FMT = "%H:%M:%S"
+    etas = []
+    for arrival_time in arrival_times:
+        unicodedata.normalize('NFKD', arrival_time).encode('ascii','ignore')
+        try:
+            eta = datetime.strptime(arrival_time, FMT) - datetime.strptime(time_now, FMT)
+            days, seconds = eta.days, eta.seconds
+            hours = days * 24 + seconds // 3600
+            minutes = (seconds % 3600) // 60
+            #seconds = seconds % 60
+            eta = [hours, minutes]
+        except ValueError:
+            pass
+            '''
+            arrival_time = arrival_time.replace('24','23')
+            eta = datetime.strptime(arrival_time, FMT) - datetime.strptime(time_now, FMT)
+            #print datetime.timedelta(hours=1)
+            '''
+        if hours >= 0:
+            etas.append(eta)
+        sorted_etas = sorted(etas, key=itemgetter(0,1))
+    return sorted_etas
+
+#print "Estimated Arrival Times for a Station: " + str(get_etas(sid))
 
 '''
 # sample call
@@ -443,6 +487,9 @@ def nearest_station(lat,lon):
 
             station = detail['result']['name']
     return station
+
+#print nearest_station("40.718803", "-74.000193") # Canal St
+#print nearest_station("40.855225", "-73.929412") # 191 St
 
 '''
 # {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
