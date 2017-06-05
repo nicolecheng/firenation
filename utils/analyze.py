@@ -11,7 +11,7 @@ STOPS = {"1": ["Van Cortlandt Park - 242 St", "238 St", "231 St", "Marble Hill -
          "2": ["Wakefield - 241 St", "Nereid Av", "233 St", "225 St", "219 St", "Gun Hill Rd", "Burke Av", "Allerton Av", "Pelham Pkwy", "Bronx Park East", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "135 St", "125 St", "116 St", "Central Park North (110 St)", "96 St", "72 St", "Times Sq - 42 St", "34 St - Penn Station", "14 St", "Chambers St", "Park Pl", "Fulton St", "Wall St", "Clark St", "Borough Hall", "Hoyt St", "Nevins St", "Atlantic Av - Barclays Ctr", "Bergen St", "Grand Army Plaza", "Eastern Pkwy - Brooklyn Museum", "Franklin Av", "President St", "Sterling St", "Winthrop St", "Church Av", "Beverly Rd", "Newkirk Av", "Flatbush Av - Brooklyn College"],
          "3": ["Harlem - 148 St", "145 St", "135 St", "125 St", "116 St", "Central Park North (110 St)", "96 St", "72 St", "Times Sq - 42 St", "34 St - Penn Station", "14 St", "Chambers St", "Park Pl", "Fulton St", "Wall St", "Clark St", "Borough Hall", "Hoyt St", "Nevins St", "Atlantic Av - Barclays Ctr", "Bergen St", "Grand Army Plaza", "Eastern Parkway - Brooklyn Museum", "Franklin Av", "Nostrand Av", "Kingston Av", "Crown Heights - Utica Av", "Sutter Av - Rutland Road", "Saratoga Av", "Rockaway Av", "Junius St", "Pennsylvania Av", "Van Siclen Av", "New Lots Av"],
          "4": ["Woodlawn", "Mosholu Pkwy", "Bedford Park Blvd - Lehman College", "Kingsbridge Rd", "Fordham Rd", "183 St", "Burnside Av", "176 St", "Mt Eden Av", "170 St", "167 St", "161 St - Yankee Stadium", "149 St - Grand Concourse", "138 St - Grand Concourse", "125 St", "86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "Crown Heights - Utica Av"],
-         "5": ["Eastchester - Dyre Av", "Baychester Av", "Gun Hill Rd", "Pelham Pkwy", "Morris Park", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "135 St", "125 St", 
+         "5": ["Eastchester - Dyre Av", "Baychester Av", "Gun Hill Rd", "Pelham Pkwy", "Morris Park", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "135 St", "125 St",
 "86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "President St", "Sterling St", "Winthrop St", "Church Av", "Beverly Rd", "Newkirk Av", "Flatbush Av - Brooklyn College"],
          "6": ["Pelham Bay Park", "Buhre Av", "Middletown Rd", "Westchester Sq - E Tremont Av", "Zerega Av", "Castle Hill Av", "Parkchester", "St Lawrence Av", "Morrison Av- Sound View", "Elder Av", "Whitlock Av", "Hunts Point Av", "Longwood Av", "E 149 St", "E 143 St - St Mary's St", "Cypress Av", "Brook Av", "3 Av - 138 St", "125 St", "116 St", "110 St", "103 St", "96 St", "86 St", "77 St", "68 St - Hunter College", "59 St", "51 St", "Grand Central - 42 St", "33 St", "28 St", "23 St", "14 St - Union Sq", "Astor Pl", "Broadway-Lafayette St", "Spring St", "Canal St", "Brooklyn Bridge - City Hall"]}
 
@@ -52,8 +52,8 @@ trip_update {
 
 #for i in feed.entity:
 #    print i.trip_update.stop_time_update[1]#.stop_id
-#print feed.entity[2]#.trip_update#.stop_time_update        
-        
+#print feed.entity[2]#.trip_update#.stop_time_update
+
 def get_stop_id(entity):
     try:
         return entity.trip_update.stop_time_update[0].stop_id
@@ -99,7 +99,7 @@ def get_stops(train):
     return STOPS[str(train)]
 
 #get_stops('3')
-    
+
 #print "Stops: " + str(get_stops("1"))
 #for stop in get_stops("3"):
 #    print stop
@@ -110,7 +110,7 @@ def get_stops(train):
 #-----------------------NYC SUBWAY DATA API-------------------------
 
 #-------------------------------------------------------------------
-    
+
 '''
 # sample call
 
@@ -120,8 +120,8 @@ mtaapi.herokuapp.com/stop?id=140S
 
 {
   "result": {
-    "lat": "40.701411", 
-    "lon": "-74.013205", 
+    "lat": "40.701411",
+    "lon": "-74.013205",
     "name": "South Ferry Loop"
   }
 }
@@ -149,18 +149,18 @@ mtaapi.herokuapp.com/api?id=120S
 {
   "result": {
     "arrivals": [
-      "06:30:00", 
-      "08:38:00", 
-      "10:45:00", 
-      "12:55:30", 
+      "06:30:00",
+      "08:38:00",
+      "10:45:00",
+      "12:55:30",
       ...
-      "12:34:00", 
-      "15:22:00", 
-      "18:10:00", 
+      "12:34:00",
+      "15:22:00",
+      "18:10:00",
       "20:58:00"
-    ], 
-    "lat": "40.793919", 
-    "lon": "-73.972323", 
+    ],
+    "lat": "40.793919",
+    "lon": "-73.972323",
     "name": "96 St"
   }
 }
@@ -173,7 +173,7 @@ def get_arrival_times(stop_id):
     page = urllib2.urlopen(new_url).read()
     d = json.loads(page)
     return d["result"]["arrivals"]
-    
+
 #print "Arrival Times: " + str(get_arrival_times(sid))
 
 '''
@@ -186,18 +186,18 @@ mtaapi.herokuapp.com/times?hour=10&minute=25
 {
   "result": [
     {
-      "arrival": "10:25:00", 
-      "id": "D22N", 
-      "lat": "40.718267", 
-      "lon": "-73.993753", 
+      "arrival": "10:25:00",
+      "id": "D22N",
+      "lat": "40.718267",
+      "lon": "-73.993753",
       "name": "Grand St"
-    }, 
+    },
     ...
     {
-      "arrival": "10:25:00", 
-      "id": "H13S", 
-      "lat": "40.585307", 
-      "lon": "-73.820558", 
+      "arrival": "10:25:00",
+      "id": "H13S",
+      "lat": "40.585307",
+      "lon": "-73.820558",
       "name": "Beach 98 St"
     }
   ]
@@ -216,14 +216,14 @@ def get_arriving_trains():
     page = urllib2.urlopen(new_url).read()
     d = json.loads(page)
     return d["result"]
-    
+
 #print "Trains Arriving Now: " + str(get_arriving_trains())
 
 #[[train,[stops]],[train,[stops]],...]
 alltrains = []
 
 # updates global list alltrains, containing all trains
-def all_trains():    
+def all_trains():
     for i in feed.entity:
         if(len(str(i.trip_update.trip.trip_id))>1):
             train=i.trip_update.trip.trip_id
@@ -270,13 +270,13 @@ def get_trains(number):
                     #if m not in down:
                     down.append(m)
     return [up,down]
-                        
+
 #print get_train(1,'S')
 #print get_trains(1)
 
 '''
 [ [station name, {"train id": arrival time}, {"train id": arrival time}, ...] [station name, {"train id":... ] ... ]
-[ ["train id", "train name", location, direction] ... ] 
+[ ["train id", "train name", location, direction] ... ]
 '''
 
 # returns a list in the above format
@@ -293,7 +293,7 @@ def get_all_arriving_trains(train):
             new_stations.append([station, "S", train])
     new_stations = [train] + new_stations
     return new_stations
-    
+
 #print get_all_arriving_trains("6")
 
 
@@ -373,6 +373,7 @@ def train_dict(train_num,station_name):
     up = n[0]
     down = n[1]
     d = {}
+    train_num = int(train_num)
     if train_num==1:
         train_list=STOPS["1"]
     elif train_num==2:
@@ -417,12 +418,12 @@ def nearest_station(lat,lon):
     end = "&radius=400&language=zh-TW&types=subway_station"
     new_url = head + mid + end
     page = urllib2.urlopen(new_url).read()
-    
-    places = json.loads(page) 
+
+    places = json.loads(page)
     if places['status'] == 'OK':
         for result in places['results']:
             place_id = result['place_id']
-            
+
             head = "https://maps.googleapis.com/maps/api/place/details/"
             mid = "json?key=%s&placeid=%s" % (api_key, place_id)
             end = "&language=zh-TW"
@@ -577,7 +578,7 @@ def error_count(down,up):
         count+=1
     return error
 #print error_count(four_down(),four_up())
-'''           
+'''
 '''
 
 def write_file():
@@ -608,6 +609,6 @@ write_file()
 '''
 '''
 f = open('train.txt','w')
-f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up())) 
+f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up()))
 f.close()
 '''
