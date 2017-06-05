@@ -21,7 +21,7 @@ def train(train_name):
 def station(train_name, station_id):
     station_name = station_id.replace("_", " ")
     result = analyze.train_dict(train_name, station_name)
-    print result
+    #print result
     return jsonify(result=result)
 
 # coordinates is lat + long
