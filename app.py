@@ -24,6 +24,16 @@ def station(train_name, station_id):
     #print result
     return jsonify(result=result)
 
+# dictionary with one key
+# key is station name with underscore in place of space
+@app.route("/data/<station_id>/")
+def station(station_id):
+    pass
+##    station_name = station_id.replace("_", " ")
+##    result = 
+##    #print result
+##    return jsonify(result=result)
+
 # coordinates is lat + long
 # remember to split by +
 @app.route("/gps/<coordinates>/", methods = ['GET', 'POST'])
