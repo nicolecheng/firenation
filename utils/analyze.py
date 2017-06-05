@@ -297,7 +297,7 @@ def get_all_arriving_trains(train):
 #print get_all_arriving_trains("6")
 
 def get_distance_between_coordinates(lat_orig, long_orig, lat_dest, long_dest):
-    earth_radius = 6371e3
+    earth_radius = 3960
     lat1_rad = math.radians(float(lat_orig))
     lat2_rad = math.radians(float(lat_dest))
     delta_lat = math.radians(float(lat_dest) - float(lat_orig))
