@@ -28,7 +28,7 @@ def train(train_name):
 @app.route("/data/<train_name>/<station_id>/")
 def station(train_name, station_id):
     station_name = station_id.replace("_", " ")
-    result = train_dict(train_name, station_name)
+    result = analyze.train_dict(train_name, station_name)
     print result
     return jsonify(result=result)
 
