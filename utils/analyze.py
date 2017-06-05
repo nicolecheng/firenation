@@ -49,11 +49,24 @@ trip_update {
 '''
 #print feed.entity[0].trip_update.stop_time_update[0].arrival.time
 # returns the stop id for a given entity which can be used to identify the station
+
+#for i in feed.entity:
+#    print i.trip_update.stop_time_update[1]#.stop_id
+#print feed.entity[2]#.trip_update#.stop_time_update        
+        
 def get_stop_id(entity):
-    return entity.trip_update.stop_time_update[0].stop_id
+    try:
+        return entity.trip_update.stop_time_update[0].stop_id
+    except:
+        return False
 
-#print "Stop ID: " + str(get_stop_id(e)) 
-
+#print "Stop ID: " + str(get_stop_id(e))
+'''
+hi = 0
+while hi < len(feed.entity):
+    print "Stop ID: " + str(get_stop_id(feed.entity[hi]))
+    hi+=1
+'''
 # returns the trip id for a given entity which can be used to identify the train
 def get_trip_id(entity):
     return entity.trip_update.trip.trip_id
@@ -83,11 +96,13 @@ def get_arrival_time(entity):
 
 # returns a list of all the stops for a given train
 def get_stops(train):
-    return STOPS[train]
+    return STOPS[str(train)]
 
+#get_stops('3')
+    
 #print "Stops: " + str(get_stops("1"))
 #for stop in get_stops("3"):
-    #print stop
+#    print stop
 
 
 #-------------------------------------------------------------------
