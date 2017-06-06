@@ -45,6 +45,7 @@ def gps(coordinates):
     result = [analyze.nearest_station(lat,lon)]
     return render_template('gps.html', stops = result)
 
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
