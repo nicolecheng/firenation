@@ -423,6 +423,7 @@ def get_dist(origin,destination,train_num,direction):
 # {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...]}
 
 def train_dict(train_num,station_name):
+    print 111111111111111111111111111111111
     n = get_trains(train_num)
     up = n[0]
     down = n[1]
@@ -463,7 +464,7 @@ def train_dict(train_num,station_name):
 
 # {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
 
-def train_dict(train_num):
+def train_dict1(train_num):
     n = get_trains(train_num)
     up = n[0]
     down = n[1]
