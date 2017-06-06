@@ -146,7 +146,7 @@ nicoleC -- 2017-06-06 @00:38
 	redid the train dictionaries for overlapping stations
 
 yikaiW -- 2017-06-06 @00:43
-        debugged and fixed everything to make functional!
+        debugged and fixed train.html to make functional!
 
 yikaiW -- 2017-06-06 @01:43
         made gps.html functional
