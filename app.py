@@ -27,7 +27,7 @@ def station(train_name, station_id):
 # dictionary with one key
 # key is station name with underscore in place of space
 @app.route("/data/<station_id>/")
-def station(station_id):
+def station_gps(station_id):
     pass
 ##    station_name = station_id.replace("_", " ")
 ##    result = 
