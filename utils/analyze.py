@@ -518,7 +518,8 @@ def get_trains_going_to_station(station_name):
 
 #print get_trains_going_to_station("Chambers St")
 
-def get_trains_at_station(station_name, train_name):
+# identifies which train has which eta
+def get_trains_at_station(station_name):
     one = ["1"]
     two = ["2"]
     three = ["3"]
@@ -584,12 +585,21 @@ def get_trains_at_station(station_name, train_name):
             traveling.append(train[5])
     traveling = sorted(traveling, key=itemgetter(1,0))
 
-    # need to match etas with distances
-    
-            
-    return traveling
+    matches = []
+    for a in approaching:
+        for t in traveling:
+            if a[0] == t[2] and a[1] == t[3]:
+                matches.append(t)
+    matches = sorted(matches, key=itemgetter(0,1))
 
-print get_trains_at_station("Chambers St", "2")
+    ctr = 0
+    while ctr < len(matches):
+        matches[ctr][1] = etas[ctr]
+        ctr += 1
+                
+    return matches
+
+print get_trains_at_station("Chambers St")
 
 api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 # returns the nearest train station within a 400 m radius given a latitude and longitude
