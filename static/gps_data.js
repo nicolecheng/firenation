@@ -5,7 +5,7 @@ var result = [];
 // Data Retrieval
 var get_data = function(station_id) {
     $.ajax({
-    	url: '/data/' + train_name + "/" + station_id + "/",
+    	url: '/data/' + station_id + "/",
     	dataType: 'json',
     	async: false,
     	success: function(data){

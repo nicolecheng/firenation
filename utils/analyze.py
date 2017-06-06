@@ -3,6 +3,7 @@ from datetime import datetime, date
 import urllib, urllib2, json, math
 import lonlat, map, unicodedata
 from operator import itemgetter
+import time
 
 feed = gtfs_realtime_pb2.FeedMessage()
 response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
@@ -276,8 +277,6 @@ def all_trains():
             for s in i.trip_update.stop_time_update:
                 stops.append(s.stop_id)
             alltrains.append([train,stops])
-    #print alltrains
-    #print feed.entity[0].trip_update.trip.trip_id
 
 all_trains()
 
@@ -307,12 +306,10 @@ def get_trains(number):
             if "..N" in t[0]:
                 for s in t[1]:
                     m = get_station_name(s)
-                    #if m not in up:
                     up.append(m)
             elif "..S" in t[0]:
                 for s in t[1]:
                     m = get_station_name(s)
-                    #if m not in down:
                     down.append(m)
     return [up,down]
 
@@ -463,7 +460,51 @@ def train_dict(train_num,station_name):
                 m.append(j)
     d[station_name] = sorted(m)
     return d
-#print train_dict(2,'Chambers St')
+
+# {'station_name':[[dist, eta, 'uptown'],[...],...]}
+def train_dict1(train_num,station_name):
+    n = get_trains(train_num)
+    up = n[0]
+    down = n[1]
+    d = {}
+    train_num = int(train_num)
+    if train_num==1:
+        train_list=STOPS["1"]
+    elif train_num==2:
+        train_list=STOPS["2"]
+    elif train_num==3:
+        train_list=STOPS["3"]
+    elif train_num==4:
+        train_list=STOPS["4"]
+    elif train_num==5:
+        train_list=STOPS["5"]
+    elif train_num==6:
+        train_list=STOPS["6"]
+    rev=train_list[::-1]
+    m = []
+    for i in up:
+        if i in rev and rev.index(i)<rev.index(station_name):
+            j=(get_dist(i,station_name,train_num,'N'))
+            j.append('uptown')
+            if not j in m:
+                m.append(j)
+    for i in down:
+        if i in train_list and train_list.index(i)<train_list.index(station_name) and not (train_list.index(i)==0):
+            j=get_dist(i,station_name,train_num,'S')
+            j.append('downtown')
+            if not j in m:
+                m.append(j)
+    d[station_name] = sorted(m)
+    return d
+#print train_dict1(2,'Chambers St')
+
+def measureTime():
+    start = time.clock() 
+    get_train(3,'S')
+    elapsed = time.clock()
+    elapsed = elapsed - start
+    print "Time spent in (function name) is: ", elapsed
+#measureTime()
 
 
 def get_trains_at_station(station_name, train_name):
@@ -743,3 +784,14 @@ f = open('train.txt','w')
 f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up()))
 f.close()
 '''
+
+# returns the station name given the stop id
+def station_names():
+    head = "http://mtaapi.herokuapp.com/stations"
+    page = urllib2.urlopen(head).read()
+    d = json.loads(page)[result]
+    f = open('stations.txt','w')
+    f.write(str(d))
+    f.close()
+    #return d["result"]["name"]
+station_names()
