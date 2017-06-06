@@ -572,11 +572,11 @@ def get_trains_at_station(station_name):
 
     trains = [one,two,three,four,five,six]
     approaching = get_trains_going_to_station(station_name)
-    print approaching
+    #print approaching
 
     stop_id = stations.id_from_name(station_name)
     etas = get_etas(stop_id)[:10]
-    print etas
+    #print etas
     
     traveling = []
     for train in trains:
@@ -599,7 +599,7 @@ def get_trains_at_station(station_name):
                 
     return matches
 
-print get_trains_at_station("Chambers St")
+#print get_trains_at_station("Chambers St")
 
 api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 # returns the nearest train station within a 400 m radius given a latitude and longitude
@@ -630,6 +630,13 @@ def nearest_station(lat,lon):
 #print nearest_station("40.718803", "-74.000193") # Canal St
 #print nearest_station("40.855225", "-73.929412") # 191 St
 
+# returns trains arriving at the nearest station to you
+def gps(lat,lon):
+    station_name = nearest_station(lat,lon)
+    trains = get_trains_at_station(station_name)
+    return trains
+
+#print gps("40.718803", "-74.000193")
 
 def measureTime():
     start = time.clock() 
