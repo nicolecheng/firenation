@@ -10,11 +10,13 @@ var get_data = function(station_id) {
     	async: false,
     	success: function(data){
     	    result = data.result;
-    	    //console.log(result);
-	       }
-       });
-
-    return result;
+          append_data(result, station_id);
+        },
+      error: function(data){
+    	    result = data.result;
+          append_data(result, station_id);
+        },
+      });
 };
 
 var add_node = function(list, element) {
@@ -25,7 +27,10 @@ var add_node = function(list, element) {
 };
 
 var append_data = function(data, station_id) {
-  var list_trains = data[station_id];
+  // console.log(station_id);
+  // console.log(station_id.split("_").join(" "));
+  // console.log(data);
+  var list_trains = data[station_id.split("_").join(" ")];
   var element = document.getElementById(station_id).children[1].children[0];
 
   for( var i = 0; i < list_trains.length; i++ ) {
@@ -36,6 +41,8 @@ var append_data = function(data, station_id) {
           add_node(list_trains[i], element.children[1]);
       }
   }
+
+  result = [];
 };
 
 var update_info = function(e) {
@@ -58,7 +65,7 @@ var update_info = function(e) {
     element.children[1].removeChild(element.children[1].lastChild);
   }
 
-   append_data(get_data(station_id), station_id);
+   get_data(station_id);
 };
 
 for( var i = 0; i < station_list.length; i++ ) {
