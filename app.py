@@ -41,8 +41,9 @@ def gps(coordinates):
     coor = coordinates.split("+")
     lat = coor[0]
     lon = coor[1]
-    result = analyze.get_gps(lat,lon)
-    return jsonify(result=result)
+    #result = analyze.get_gps(lat,lon)
+    result = [analyze.nearest_station(lat,lon)]
+    return render_template('gps.html', stops = result)
 
 if __name__ == "__main__":
     app.debug = True
