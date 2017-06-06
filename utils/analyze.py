@@ -24,7 +24,6 @@ def setup():
     try:
         response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
         feed.ParseFromString(response.read())
-        e = feed.entity[0]
         all_trains()
     except:
         setup()
@@ -44,6 +43,8 @@ STOPS = {"1": ["Van Cortlandt Park - 242 St", "238 St", "231 St", "Marble Hill -
 #-----------------------------MTA API-------------------------------
 
 #-------------------------------------------------------------------
+
+e = feed.entity[0]
 
 # returns the current feed
 def get_feed():
@@ -96,11 +97,12 @@ def get_trip_id(entity):
 #print "Trip ID: " + str(get_trip_id(e))
 
 # returns the train name for a given entity which can be used to identify the train
-def get_train(entity):
-    trip_id = get_trip_id(entity)
-    return trip_id[7]
+def get_train_name(entity):
+    #trip_id = get_trip_id(entity)
+    #return trip_id[7]
+    return entity.trip_update.trip.route_id
 
-#print "Train: " + str(get_train(e))
+#print "Train: " + str(get_train_name(e))
 
 # returns the train direction for a given entity which can be used to identify the train
 def get_direction(entity):
@@ -499,6 +501,22 @@ def train_dict(train_num):
         d[stop] = m
     return d
 
+# returns list of trains going to a particular station
+def get_trains_going_to_station(station_name):
+    trains = []
+    for i in feed.entity:
+        try: 
+            stop_id = get_stop_id(i)
+            station = get_station_name(stop_id)
+            if station == station_name:
+                train = get_train_name(i)
+                direction = get_direction(i)
+                trains.append([train,direction])
+        except:
+            pass
+    return trains
+
+#print get_trains_going_to_station("Chambers St")
 
 def get_trains_at_station(station_name, train_name):
     one = ["1"]
@@ -511,51 +529,54 @@ def get_trains_at_station(station_name, train_name):
     if station_name in get_stops("1"):
         i1 = get_stops("1").index(station_name)
         one += get_stops("1")[i1-1:i1+2]
-        d1 = lonlat.get_d1()[i1-1] + ["1","downtown"]
-        u1 = lonlat.get_u1()[len(get_stops("1"))-i1-2] + ["1","uptown"]
+        d1 = lonlat.get_d1()[i1-1] + ["1","S"]
+        u1 = lonlat.get_u1()[len(get_stops("1"))-i1-2] + ["1","N"]
         one.append(d1)
         one.append(u1)
     if station_name in get_stops("2"):
         i2 = get_stops("2").index(station_name)
         two += get_stops("2")[i2-1:i2+2]
-        d2 = lonlat.get_d2()[i2-1] + ["2","downtown"]
-        u2 = lonlat.get_u2()[len(get_stops("2"))-i2-2] + ["2","uptown"]
+        d2 = lonlat.get_d2()[i2-1] + ["2","S"]
+        u2 = lonlat.get_u2()[len(get_stops("2"))-i2-2] + ["2","N"]
         two.append(d2)
         two.append(u2)
     if station_name in get_stops("3"):
         i3 = get_stops("3").index(station_name)
         three += get_stops("3")[i3-1:i3+2]
-        d3 = lonlat.get_d3()[i3-1] + ["3","downtown"]
-        u3 = lonlat.get_u3()[len(get_stops("3"))-i3-2] + ["3","uptown"]
+        d3 = lonlat.get_d3()[i3-1] + ["3","S"]
+        u3 = lonlat.get_u3()[len(get_stops("3"))-i3-2] + ["3","N"]
         three.append(d3)
         three.append(u3)
     if station_name in get_stops("4"):
         i4 = get_stops("4").index(station_name)
         four += get_stops("4")[i4-1:i4+2]
-        d4 = lonlat.get_d4()[i4-1] + ["4","downtown"]
-        u4 = lonlat.get_u4()[len(get_stops("4"))-i4-2] + ["4","uptown"]
+        d4 = lonlat.get_d4()[i4-1] + ["4","S"]
+        u4 = lonlat.get_u4()[len(get_stops("4"))-i4-2] + ["4","N"]
         four.append(d4)
         four.append(u4)
     if station_name in get_stops("5"):
         i5 = get_stops("5").index(station_name)
         five += get_stops("5")[i5-1:i5+2]
-        d5 = lonlat.get_d5()[i5-1] + ["5","downtown"]
-        u5 = lonlat.get_u5()[len(get_stops("5"))-i5-2] + ["5","uptown"]
+        d5 = lonlat.get_d5()[i5-1] + ["5","S"]
+        u5 = lonlat.get_u5()[len(get_stops("5"))-i5-2] + ["5","N"]
         five.append(d5)
         five.append(u5)
     if station_name in get_stops("6"):
         i6 = get_stops("6").index(station_name)
         six += get_stops("6")[i6-1:i6+2]
-        d6 = lonlat.get_d6()[i6-1] + ["6","downtown"]
-        u6 = lonlat.get_u6()[len(get_stops("6"))-i6-2] + ["6","uptown"]
+        d6 = lonlat.get_d6()[i6-1] + ["6","S"]
+        u6 = lonlat.get_u6()[len(get_stops("6"))-i6-2] + ["6","N"]
         six.append(d6)
         six.append(u6)
 
     trains = [one,two,three,four,five,six]
+    approaching = get_trains_going_to_station(station_name)
+    print approaching
 
-    #stop_id = something with station_name
-    #etas = get_etas(stop_id)[:10]
-
+    stop_id = stations.id_from_name(station_name)
+    etas = get_etas(stop_id)[:10]
+    print etas
+    
     traveling = []
     for train in trains:
         if len(train) > 1:
@@ -568,7 +589,7 @@ def get_trains_at_station(station_name, train_name):
             
     return traveling
 
-#print get_trains_at_station("Chambers St", "2")
+print get_trains_at_station("Chambers St", "2")
 
 api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 # returns the nearest train station within a 400 m radius given a latitude and longitude
