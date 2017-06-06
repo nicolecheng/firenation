@@ -553,7 +553,7 @@ def get_trains_at_station(station_name):
     trains = [one,two,three,four,five,six]
     #print trains
     approaching = get_trains_going_to_station(station_name)
-    print approaching
+    #print approaching
 
     stop_id = stations.id_from_name(station_name)
     etas = get_etas(stop_id)[:10]
@@ -565,8 +565,7 @@ def get_trains_at_station(station_name):
             traveling.append(train[4])
             traveling.append(train[5])
     traveling = sorted(traveling, key=itemgetter(1,0))
-    print "TRAVELING"
-    print traveling
+    #print traveling
     
     matches = []
     for a in approaching:
@@ -597,6 +596,7 @@ def nearest_station(lat,lon):
     new_url = head + mid + end
     page = urllib2.urlopen(new_url).read()
 
+    #station = ""
     places = json.loads(page)
     if places['status'] == 'OK':
         for result in places['results']:
@@ -616,12 +616,12 @@ def nearest_station(lat,lon):
 #print nearest_station("40.855225", "-73.929412") # 191 St
 
 # returns trains arriving at the nearest station to you
-def gps(lat,lon):
+def get_gps(lat,lon):
     station_name = nearest_station(lat,lon)
     trains = get_trains_at_station(station_name)
     return trains
 
-#print gps("40.718803", "-74.000193")
+#print get_gps("40.718803", "-74.000193")
 
 def measureTime():
     start = time.clock() 

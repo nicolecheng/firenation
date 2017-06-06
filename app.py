@@ -41,8 +41,8 @@ def gps(coordinates):
     coor = coordinates.split("+")
     lat = coor[0]
     lon = coor[1]
-    return 
-
+    result = analyze.get_gps(lat,lon)
+    return jsonify(result=result)
 
 if __name__ == "__main__":
     app.debug = True
