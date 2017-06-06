@@ -174,7 +174,7 @@ def get_station_name(stop_id):
     return stations.d[stop_id]
 
 #print "Station Name: " + str(get_station_name('234N'))
-    
+
 '''
 # sample call
 
@@ -479,7 +479,7 @@ def train_dict(train_num,station_name):
 def get_trains_going_to_station(station_name):
     trains = []
     for i in feed.entity:
-        try: 
+        try:
             stop_id = get_stop_id(i)
             station = get_station_name(stop_id)
             if station == station_name:
@@ -500,7 +500,7 @@ def get_trains_at_station(station_name):
     four = ["4"]
     five = ["5"]
     six = ["6"]
-    
+
     if station_name in get_stops("1"):
         i1 = get_stops("1").index(station_name)
         stops1 = get_stops("1")[i1-1:i1+2]
@@ -535,7 +535,7 @@ def get_trains_at_station(station_name):
         four.append(u4)
     if station_name in get_stops("5"):
         i5 = get_stops("5").index(station_name)
-        stops5 = get_stops("5")[i5-1:i5+2] 
+        stops5 = get_stops("5")[i5-1:i5+2]
         five += stops5
         d5 = lonlat.get_d5()[i5-1] + [stops5[0],"S","5"]
         u5 = lonlat.get_u5()[len(get_stops("5"))-i5-2] + [stops5[2],"N","5"]
@@ -558,7 +558,7 @@ def get_trains_at_station(station_name):
     stop_id = stations.id_from_name(station_name)
     etas = get_etas(stop_id)[:10]
     #print etas
-    
+
     traveling = []
     for train in trains:
         if len(train) > 1:
@@ -566,7 +566,7 @@ def get_trains_at_station(station_name):
             traveling.append(train[5])
     traveling = sorted(traveling, key=itemgetter(1,0))
     #print traveling
-    
+
     matches = []
     for a in approaching:
         for t in traveling:
@@ -580,7 +580,7 @@ def get_trains_at_station(station_name):
         ctr += 1
 
     d = {station_name:matches}
-                
+
     return d
 
 #print get_trains_at_station("Chambers St")
@@ -610,7 +610,7 @@ def nearest_station(lat,lon):
             detail = json.loads(page)
 
             station = detail['result']['name']
-    return station
+        return station
 
 #print nearest_station("40.718803", "-74.000193") # Canal St
 #print nearest_station("40.855225", "-73.929412") # 191 St
@@ -624,7 +624,7 @@ def get_gps(lat,lon):
 #print get_gps("40.718803", "-74.000193")
 
 def measureTime():
-    start = time.clock() 
+    start = time.clock()
     train_dict(5)
     elapsed = time.clock()
     elapsed = elapsed - start
