@@ -4,20 +4,40 @@ import urllib, urllib2, json, math
 import lonlat, map, unicodedata
 from operator import itemgetter
 import time
+import stations
 
+#[[train,[stops]],[train,[stops]],...]
+alltrains = []
 feed = gtfs_realtime_pb2.FeedMessage()
-response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
-feed.ParseFromString(response.read())
+
+# updates global list alltrains, containing all trains
+def all_trains():
+    for i in feed.entity:
+        if(len(str(i.trip_update.trip.trip_id))>1):
+            train=i.trip_update.trip.trip_id
+            stops=[]
+            for s in i.trip_update.stop_time_update:
+                stops.append(s.stop_id)
+            alltrains.append([train,stops])
+
+def setup():
+    try:
+        response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
+        feed.ParseFromString(response.read())
+        e = feed.entity[0]
+        all_trains()
+    except:
+        setup()
+
+setup()
 
 STOPS = {"1": ["Van Cortlandt Park - 242 St", "238 St", "231 St", "Marble Hill - 225 St", "215 St", "207 St", "Dyckman St", "191 St", "181 St", "168 St - Washington Hts", "157 St", "145 St", "137 St - City College", "125 St", "116 St - Columbia University", "Cathedral Pkwy", "103 St", "96 St", "86 St", "79 St", "72 St", "66 St - Lincoln Center", "59 St - Columbus Circle", "50 St", "Times Sq - 42 St", "34 St - Penn Station", "28 St", "23 St", "18 St", "14 St", "Christopher St - Sheridan Sq", "Houston St", "Canal St", "Franklin St", "Chambers St", "Cortlandt St", "Rector St", "South Ferry Loop"],
          "2": ["Wakefield - 241 St", "Nereid Av", "233 St", "225 St", "219 St", "Gun Hill Rd", "Burke Av", "Allerton Av", "Pelham Pkwy", "Bronx Park East", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "135 St", "125 St", "116 St", "Central Park North (110 St)", "96 St", "72 St", "Times Sq - 42 St", "34 St - Penn Station", "14 St", "Chambers St", "Park Pl", "Fulton St", "Wall St", "Clark St", "Borough Hall", "Hoyt St", "Nevins St", "Atlantic Av - Barclays Ctr", "Bergen St", "Grand Army Plaza", "Eastern Pkwy - Brooklyn Museum", "Franklin Av", "President St", "Sterling St", "Winthrop St", "Church Av", "Beverly Rd", "Newkirk Av", "Flatbush Av - Brooklyn College"],
-         "3": ["Harlem - 148 St", "145 St", "135 St", "125 St", "116 St", "Central Park North (110 St)", "96 St", "72 St", "Times Sq - 42 St", "34 St - Penn Station", "14 St", "Chambers St", "Park Pl", "Fulton St", "Wall St", "Clark St", "Borough Hall", "Hoyt St", "Nevins St", "Atlantic Av - Barclays Ctr", "Bergen St", "Grand Army Plaza", "Eastern Parkway - Brooklyn Museum", "Franklin Av", "Nostrand Av", "Kingston Av", "Crown Heights - Utica Av", "Sutter Av - Rutland Road", "Saratoga Av", "Rockaway Av", "Junius St", "Pennsylvania Av", "Van Siclen Av", "New Lots Av"],
-         "4": ["Woodlawn", "Mosholu Pkwy", "Bedford Park Blvd - Lehman College", "Kingsbridge Rd", "Fordham Rd", "183 St", "Burnside Av", "176 St", "Mt Eden Av", "170 St", "167 St", "161 St - Yankee Stadium", "149 St - Grand Concourse", "138 St - Grand Concourse", "125 St", "86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "Crown Heights - Utica Av"],
-         "5": ["Eastchester - Dyre Av", "Baychester Av", "Gun Hill Rd", "Pelham Pkwy", "Morris Park", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "135 St", "125 St",
+         "3": ["Harlem - 148 St", "145 St", "135 St", "125 St", "116 St", "Central Park North (110 St)", "96 St", "72 St", "Times Sq - 42 St", "34 St - Penn Station", "14 St", "Chambers St", "Park Pl", "Fulton St", "Wall St", "Clark St", "Borough Hall", "Hoyt St", "Nevins St", "Atlantic Av - Barclays Ctr", "Bergen St", "Grand Army Plaza", "Eastern Pkwy - Brooklyn Museum", "Franklin Av", "Nostrand Av", "Kingston Av", "Crown Hts - Utica Av", "Sutter Av - Rutland Rd", "Saratoga Av", "Rockaway Av", "Junius St", "Pennsylvania Av", "Van Siclen Av", "New Lots Av"], # note: eastern parkway changed to eastern pkwy, rutland road to rutland rd, crown heights to crown hts
+         "4": ["Woodlawn", "Mosholu Pkwy", "Bedford Park Blvd - Lehman College", "Kingsbridge Rd", "Fordham Rd", "183 St", "Burnside Av", "176 St", "Mt Eden Av", "170 St", "167 St", "161 St - Yankee Stadium", "149 St - Grand Concourse", "138 St - Grand Concourse", "125 St", "86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "Crown Hts - Utica Av"], # note: crown heights changed to crown hts
+         "5": ["Eastchester - Dyre Av", "Baychester Av", "Gun Hill Rd", "Pelham Pkwy", "Morris Park", "E 180 St", "West Farms Sq - E Tremont Av", "174 St", "Freeman St", "Simpson St", "Intervale Av", "Prospect Av", "Jackson Av", "3 Av - 149 St", "149 St - Grand Concourse", "138 St - Grand Concourse", "125 St",
 "86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "President St", "Sterling St", "Winthrop St", "Church Av", "Beverly Rd", "Newkirk Av", "Flatbush Av - Brooklyn College"],
          "6": ["Pelham Bay Park", "Buhre Av", "Middletown Rd", "Westchester Sq - E Tremont Av", "Zerega Av", "Castle Hill Av", "Parkchester", "St Lawrence Av", "Morrison Av- Sound View", "Elder Av", "Whitlock Av", "Hunts Point Av", "Longwood Av", "E 149 St", "E 143 St - St Mary's St", "Cypress Av", "Brook Av", "3 Av - 138 St", "125 St", "116 St", "110 St", "103 St", "96 St", "86 St", "77 St", "68 St - Hunter College", "59 St", "51 St", "Grand Central - 42 St", "33 St", "28 St", "23 St", "14 St - Union Sq", "Astor Pl", "Broadway-Lafayette St", "Spring St", "Canal St", "Brooklyn Bridge - City Hall"]}
-
-e = feed.entity[0]
 
 #-------------------------------------------------------------------
 
@@ -143,15 +163,11 @@ mtaapi.herokuapp.com/stop?id=140S
 }
 '''
 
-sid = get_stop_id(e)
+#sid = get_stop_id(e)
 
 # returns the station name given the stop id
 def get_station_name(stop_id):
-    head = "http://mtaapi.herokuapp.com/stop?id="
-    new_url = head + stop_id
-    page = urllib2.urlopen(new_url).read()
-    d = json.loads(page)
-    return d["result"]["name"]
+    return stations.d[stop_id]
 
 #print "Station Name: " + str(get_station_name(sid))
 
@@ -263,25 +279,6 @@ def get_arriving_trains():
     return d["result"]
 
 #print "Trains Arriving Now: " + str(get_arriving_trains())
-
-#[[train,[stops]],[train,[stops]],...]
-alltrains = []
-
-# updates global list alltrains, containing all trains
-def all_trains():
-    for i in feed.entity:
-        if(len(str(i.trip_update.trip.trip_id))>1):
-            train=i.trip_update.trip.trip_id
-            stops=[]
-            for s in i.trip_update.stop_time_update:
-                stops.append(s.stop_id)
-            alltrains.append([train,stops])
-
-all_trains()
-
-#print alltrains
-
-#print get_station_name(alltrains[100][1][0])
 
 # returns a list of all stops that the trains are at
 # i.e. (3,'N') = 3 train, northbound
@@ -458,6 +455,87 @@ def train_dict(train_num,station_name):
     d[station_name] = sorted(m)
     return d
 
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
+
+def train_dict(train_num):
+    n = get_trains(train_num)
+    up = n[0]
+    down = n[1]
+    d = {}
+    if train_num==1:
+        train_list=STOPS["1"]
+    elif train_num==2:
+        train_list=STOPS["2"]
+    elif train_num==3:
+        train_list=STOPS["3"]
+    elif train_num==4:
+        train_list=STOPS["4"]
+    elif train_num==5:
+        train_list=STOPS["5"]
+        #print train_list
+    elif train_num==6:
+        train_list=STOPS["6"]
+    rev=train_list[::-1]
+    for stop in train_list:
+        m = []
+        for i in up:
+            if i in rev and rev.index(i)<rev.index(stop) and not(rev.index(i)==0):
+                prev = rev[rev.index(i)-1]
+                j=(get_dist(i,stop,train_num,'N'))
+                j.append(prev)
+                j.append('uptown')
+                m.append(j)
+        for i in down:
+            if i in train_list and train_list.index(i)<train_list.index(stop) and not (train_list.index(i)==0):
+                prev=train_list[train_list.index(i)-1]
+                j=get_dist(i,stop,train_num,'S')
+                j.append(prev)
+                j.append('downtown')
+                m.append(j)
+        d[stop] = m
+    return d
+
+api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
+# returns the nearest train station within a 400 m radius given a latitude and longitude
+def nearest_station(lat,lon):
+    lat = float(lat)
+    lon = float(lon)
+    head = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+    mid = "key=%s&location=%f,%f" % (api_key, lat, lon)
+    end = "&radius=400&language=zh-TW&types=subway_station"
+    new_url = head + mid + end
+    page = urllib2.urlopen(new_url).read()
+
+    places = json.loads(page)
+    if places['status'] == 'OK':
+        for result in places['results']:
+            place_id = result['place_id']
+
+            head = "https://maps.googleapis.com/maps/api/place/details/"
+            mid = "json?key=%s&placeid=%s" % (api_key, place_id)
+            end = "&language=zh-TW"
+            new_url = head + mid + end
+            page = urllib2.urlopen(new_url).read()
+            detail = json.loads(page)
+
+            station = detail['result']['name']
+    return station
+
+#print nearest_station("40.718803", "-74.000193") # Canal St
+#print nearest_station("40.855225", "-73.929412") # 191 St
+
+
+def measureTime():
+    start = time.clock() 
+    train_dict(5)
+    elapsed = time.clock()
+    elapsed = elapsed - start
+    print "Time spent in (function name) is: ", elapsed
+#measureTime()
+
+
+'''
+
 # {'station_name':[[dist, eta, 'uptown'],[...],...]}
 def train_dict1(train_num,station_name):
     n = get_trains(train_num)
@@ -494,83 +572,6 @@ def train_dict1(train_num,station_name):
     d[station_name] = sorted(m)
     return d
 #print train_dict1(2,'Chambers St')
-
-def measureTime():
-    start = time.clock() 
-    get_train(3,'S')
-    elapsed = time.clock()
-    elapsed = elapsed - start
-    print "Time spent in (function name) is: ", elapsed
-#measureTime()
-
-api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
-# returns the nearest train station within a 400 m radius given a latitude and longitude
-def nearest_station(lat,lon):
-    lat = float(lat)
-    lon = float(lon)
-    head = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-    mid = "key=%s&location=%f,%f" % (api_key, lat, lon)
-    end = "&radius=400&language=zh-TW&types=subway_station"
-    new_url = head + mid + end
-    page = urllib2.urlopen(new_url).read()
-
-    places = json.loads(page)
-    if places['status'] == 'OK':
-        for result in places['results']:
-            place_id = result['place_id']
-
-            head = "https://maps.googleapis.com/maps/api/place/details/"
-            mid = "json?key=%s&placeid=%s" % (api_key, place_id)
-            end = "&language=zh-TW"
-            new_url = head + mid + end
-            page = urllib2.urlopen(new_url).read()
-            detail = json.loads(page)
-
-            station = detail['result']['name']
-    return station
-
-#print nearest_station("40.718803", "-74.000193") # Canal St
-#print nearest_station("40.855225", "-73.929412") # 191 St
-
-'''
-# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
-
-def train_dict(train_num):
-    n = get_trains(train_num)
-    up = n[0]
-    down = n[1]
-    d = {}
-    if train_num==1:
-        train_list=STOPS["1"]
-    elif train_num==2:
-        train_list=STOPS["2"]
-    elif train_num==3:
-        train_list=STOPS["3"]
-    elif train_num==4:
-        train_list=STOPS["4"]
-    elif train_num==5:
-        train_list=STOPS["5"]
-    elif train_num==6:
-        train_list=STOPS["6"]
-    rev=train_list[::-1]
-    for stop in train_list:
-        m = []
-        for i in up:
-            if rev.index(i)<rev.index(stop) and not(rev.index(i)==0):
-                prev = rev[rev.index(i)-1]
-                j=(get_dist(i,stop,train_num,'N'))
-                j.append(prev)
-                j.append('uptown')
-                m.append(j)
-        for i in down:
-            if train_list.index(i)<train_list.index(stop) and not (train_list.index(i)==0):
-                prev=train_list[train_list.index(i)-1]
-                j=get_dist(i,stop,train_num,'S')
-                j.append(prev)
-                j.append('downtown')
-                m.append(j)
-        d[stop] = m
-    return d
 '''
 
 '''
@@ -710,7 +711,7 @@ f = open('train.txt','w')
 f.write("d1="+str(one_down())+"\n\nu1="+str(one_up())+"\n\nd2="+str(two_down())+"\n\nu2="+str(two_up())+"\n\nd3="+str(three_down())+"\n\nu3="+str(three_up())+"\n\nd4="+str(four_down())+"\n\nu4="+str(four_up())+"\n\nd5="+str(five_down())+"\n\nu5="+str(five_up())+"\n\nd6="+str(six_down())+"\n\nu6="+str(six_up()))
 f.close()
 '''
-
+'''
 # returns the station name given the stop id
 def station_names():
     head = "http://mtaapi.herokuapp.com/stations"
@@ -720,4 +721,5 @@ def station_names():
     f.write(str(d))
     f.close()
     #return d["result"]["name"]
-station_names()
+#station_names()
+'''
