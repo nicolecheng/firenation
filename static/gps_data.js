@@ -34,7 +34,9 @@ var append_data = function(data, station_id) {
   var list_trains = data[station_id.split("_").join(" ")];
   var element = document.getElementById(station_id).children[1].children[0];
 
-  for( var i = 0; i < list_trains.length; i++ ) {
+  var length = (list_trains.length > 14)? 14 : list_trains.length;
+
+  for( var i = 0; i < length; i++ ) {
       if (list_trains[i][3] == "uptown") {
           add_node(list_trains[i], element.children[0]);
       }
@@ -43,7 +45,6 @@ var append_data = function(data, station_id) {
       }
   }
 
-  result = [];
 };
 
 var update_info = function(e) {

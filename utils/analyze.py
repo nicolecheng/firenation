@@ -470,7 +470,7 @@ def train_dict(train_num,station_name):
     for a in q:
         k = train_dict_old(a,station_name)
         p.extend(k)
-    d[station_name]=p
+    d[station_name]= sorted(p)
     return d
 
 print train_dict(2,'Chambers St')
