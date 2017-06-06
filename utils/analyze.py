@@ -95,7 +95,7 @@ def get_arrival_time(entity):
 
 #print "Arrival Time: " + str(get_arrival_time(e))
 
-'''
+
 # returns estimated arrival time in hour:minute:second
 def get_eta(entity):
     arrival_time = get_arrival_time(entity)
@@ -107,7 +107,7 @@ def get_eta(entity):
     return eta
 
 #print "ETA: " + str(get_eta(e))
-'''
+
 
 # returns a list of all the stops for a given train
 def get_stops(train):
@@ -142,7 +142,8 @@ mtaapi.herokuapp.com/stop?id=140S
 }
 '''
 
-sid = get_stop_id(e)
+#sid = get_stop_id(e)
+sid = "137N"
 
 # returns the station name given the stop id
 def get_station_name(stop_id):
@@ -153,7 +154,7 @@ def get_station_name(stop_id):
     return d["result"]["name"]
 
 #print "Station Name: " + str(get_station_name(sid))
-
+    
 '''
 # sample call
 
@@ -218,7 +219,7 @@ def get_etas(stop_id):
         sorted_etas = sorted(etas, key=itemgetter(0,1))
     return sorted_etas
 
-#print "Estimated Arrival Times for a Station: " + str(get_etas(sid))
+print "Estimated Arrival Times for a Station: " + str(get_etas(sid))
 
 '''
 # sample call
@@ -351,6 +352,8 @@ def get_distance_between_coordinates(lat_orig, long_orig, lat_dest, long_dest):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     return earth_radius * c
 
+#print get_distance_between_coordinates("40.793919", "-73.972323", "40.788644", "-73.976218")
+
 # returns [minutes,miles] between the given stations
 def get_dist(origin,destination,train_num,direction):
     line = []
@@ -461,6 +464,77 @@ def train_dict(train_num,station_name):
     d[station_name] = sorted(m)
     return d
 #print train_dict(2,'Chambers St')
+
+
+def get_trains_at_station(station_name, train_name):
+    one = ["1"]
+    two = ["2"]
+    three = ["3"]
+    four = ["4"]
+    five = ["5"]
+    six = ["6"]
+    
+    if station_name in get_stops("1"):
+        i1 = get_stops("1").index(station_name)
+        one += get_stops("1")[i1-1:i1+2]
+        d1 = lonlat.get_d1()[i1-1] + ["1","downtown"]
+        u1 = lonlat.get_u1()[len(get_stops("1"))-i1-2] + ["1","uptown"]
+        one.append(d1)
+        one.append(u1)
+    if station_name in get_stops("2"):
+        i2 = get_stops("2").index(station_name)
+        two += get_stops("2")[i2-1:i2+2]
+        d2 = lonlat.get_d2()[i2-1] + ["2","downtown"]
+        u2 = lonlat.get_u2()[len(get_stops("2"))-i2-2] + ["2","uptown"]
+        two.append(d2)
+        two.append(u2)
+    if station_name in get_stops("3"):
+        i3 = get_stops("3").index(station_name)
+        three += get_stops("3")[i3-1:i3+2]
+        d3 = lonlat.get_d3()[i3-1] + ["3","downtown"]
+        u3 = lonlat.get_u3()[len(get_stops("3"))-i3-2] + ["3","uptown"]
+        three.append(d3)
+        three.append(u3)
+    if station_name in get_stops("4"):
+        i4 = get_stops("4").index(station_name)
+        four += get_stops("4")[i4-1:i4+2]
+        d4 = lonlat.get_d4()[i4-1] + ["4","downtown"]
+        u4 = lonlat.get_u4()[len(get_stops("4"))-i4-2] + ["4","uptown"]
+        four.append(d4)
+        four.append(u4)
+    if station_name in get_stops("5"):
+        i5 = get_stops("5").index(station_name)
+        five += get_stops("5")[i5-1:i5+2]
+        d5 = lonlat.get_d5()[i5-1] + ["5","downtown"]
+        u5 = lonlat.get_u5()[len(get_stops("5"))-i5-2] + ["5","uptown"]
+        five.append(d5)
+        five.append(u5)
+    if station_name in get_stops("6"):
+        i6 = get_stops("6").index(station_name)
+        six += get_stops("6")[i6-1:i6+2]
+        d6 = lonlat.get_d6()[i6-1] + ["6","downtown"]
+        u6 = lonlat.get_u6()[len(get_stops("6"))-i6-2] + ["6","uptown"]
+        six.append(d6)
+        six.append(u6)
+
+    trains = [one,two,three,four,five,six]
+
+    #stop_id = something with station_name
+    #etas = get_etas(stop_id)[:10]
+
+    traveling = []
+    for train in trains:
+        if len(train) > 1:
+            traveling.append(train[4])
+            traveling.append(train[5])
+    traveling = sorted(traveling, key=itemgetter(1,0))
+
+    # need to match etas with distances
+    
+            
+    return traveling
+
+print get_trains_at_station("Chambers St", "2")
 
 api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 # returns the nearest train station within a 400 m radius given a latitude and longitude
