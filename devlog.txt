@@ -136,7 +136,7 @@ yikaiW -- 2017-06-05 @17:40
 	continued working on frontend
 
 ziyanL -- 2017-06-05 @23:13
-        worked on gps.html
+        worked on gps.html and debugged coordinate route
 
 jessicaY -- 2017-06-05 @23:30
 	matched trains up real-time
@@ -146,4 +146,7 @@ nicoleC -- 2017-06-06 @00:38
 	redid the train dictionaries for overlapping stations
 
 yikaiW -- 2017-06-06 @00:43
-        debugged and fixed everything to make functional!
+        debugged and fixed train.html to make functional!
+
+yikaiW -- 2017-06-06 @01:43
+        made gps.html functional
