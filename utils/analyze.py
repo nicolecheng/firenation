@@ -475,6 +475,16 @@ def train_dict(train_num,station_name):
 
 #print train_dict(2,'Chambers St')
 
+def gps_dict(station_name):
+    q = lonlat.get_possible_trains(station_name)
+    d = {}
+    p = []
+    for a in q:
+        k = train_dict_old(a,station_name)
+        p.extend(k)
+    d[station_name]= sorted(p)
+    return d
+
 # returns list of trains going to a particular station
 def get_trains_going_to_station(station_name):
     trains = []
