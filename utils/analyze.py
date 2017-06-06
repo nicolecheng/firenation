@@ -529,50 +529,57 @@ def get_trains_at_station(station_name):
     
     if station_name in get_stops("1"):
         i1 = get_stops("1").index(station_name)
-        one += get_stops("1")[i1-1:i1+2]
-        d1 = lonlat.get_d1()[i1-1] + ["1","S"]
-        u1 = lonlat.get_u1()[len(get_stops("1"))-i1-2] + ["1","N"]
+        stops1 = get_stops("1")[i1-1:i1+2]
+        one += stops1
+        d1 = lonlat.get_d1()[i1-1] + [stops1[0],"S","1"]
+        u1 = lonlat.get_u1()[len(get_stops("1"))-i1-2] + [stops1[2],"N","1"]
         one.append(d1)
         one.append(u1)
     if station_name in get_stops("2"):
         i2 = get_stops("2").index(station_name)
-        two += get_stops("2")[i2-1:i2+2]
-        d2 = lonlat.get_d2()[i2-1] + ["2","S"]
-        u2 = lonlat.get_u2()[len(get_stops("2"))-i2-2] + ["2","N"]
+        stops2 = get_stops("2")[i2-1:i2+2]
+        two += stops2
+        d2 = lonlat.get_d2()[i2-1] + [stops2[0],"S","2"]
+        u2 = lonlat.get_u2()[len(get_stops("2"))-i2-2] + [stops2[2],"N","2"]
         two.append(d2)
         two.append(u2)
     if station_name in get_stops("3"):
         i3 = get_stops("3").index(station_name)
-        three += get_stops("3")[i3-1:i3+2]
-        d3 = lonlat.get_d3()[i3-1] + ["3","S"]
-        u3 = lonlat.get_u3()[len(get_stops("3"))-i3-2] + ["3","N"]
+        stops3 = get_stops("3")[i3-1:i3+2]
+        three += stops3
+        d3 = lonlat.get_d3()[i3-1] + [stops3[0],"S","3"]
+        u3 = lonlat.get_u3()[len(get_stops("3"))-i3-2] + [stops3[2],"N","3"]
         three.append(d3)
         three.append(u3)
     if station_name in get_stops("4"):
         i4 = get_stops("4").index(station_name)
-        four += get_stops("4")[i4-1:i4+2]
-        d4 = lonlat.get_d4()[i4-1] + ["4","S"]
-        u4 = lonlat.get_u4()[len(get_stops("4"))-i4-2] + ["4","N"]
+        stops4 = get_stops("4")[i4-1:i4+2]
+        four += stops4
+        d4 = lonlat.get_d4()[i4-1] + [stops4[0],"S","4"]
+        u4 = lonlat.get_u4()[len(get_stops("4"))-i4-2] + [stops4[2],"N","4"]
         four.append(d4)
         four.append(u4)
     if station_name in get_stops("5"):
         i5 = get_stops("5").index(station_name)
-        five += get_stops("5")[i5-1:i5+2]
-        d5 = lonlat.get_d5()[i5-1] + ["5","S"]
-        u5 = lonlat.get_u5()[len(get_stops("5"))-i5-2] + ["5","N"]
+        stops5 = get_stops("5")[i5-1:i5+2] 
+        five += stops5
+        d5 = lonlat.get_d5()[i5-1] + [stops5[0],"S","5"]
+        u5 = lonlat.get_u5()[len(get_stops("5"))-i5-2] + [stops5[2],"N","5"]
         five.append(d5)
         five.append(u5)
     if station_name in get_stops("6"):
         i6 = get_stops("6").index(station_name)
-        six += get_stops("6")[i6-1:i6+2]
-        d6 = lonlat.get_d6()[i6-1] + ["6","S"]
-        u6 = lonlat.get_u6()[len(get_stops("6"))-i6-2] + ["6","N"]
+        stops6 = get_stops("6")[i6-1:i6+2]
+        six += stops6
+        d6 = lonlat.get_d6()[i6-1] + [stops6[0],"S","6"]
+        u6 = lonlat.get_u6()[len(get_stops("6"))-i6-2] + [stops6[2],"N","6"]
         six.append(d6)
         six.append(u6)
 
     trains = [one,two,three,four,five,six]
+    #print trains
     approaching = get_trains_going_to_station(station_name)
-    #print approaching
+    print approaching
 
     stop_id = stations.id_from_name(station_name)
     etas = get_etas(stop_id)[:10]
@@ -584,11 +591,13 @@ def get_trains_at_station(station_name):
             traveling.append(train[4])
             traveling.append(train[5])
     traveling = sorted(traveling, key=itemgetter(1,0))
-
+    print "TRAVELING"
+    print traveling
+    
     matches = []
     for a in approaching:
         for t in traveling:
-            if a[0] == t[2] and a[1] == t[3]:
+            if a[0] == t[4] and a[1] == t[3]:
                 matches.append(t)
     matches = sorted(matches, key=itemgetter(0,1))
 
@@ -596,8 +605,10 @@ def get_trains_at_station(station_name):
     while ctr < len(matches):
         matches[ctr][1] = etas[ctr]
         ctr += 1
+
+    d = {station_name:matches}
                 
-    return matches
+    return d
 
 #print get_trains_at_station("Chambers St")
 
