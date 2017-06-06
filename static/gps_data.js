@@ -73,4 +73,5 @@ var update_info = function(e) {
 for( var i = 0; i < station_list.length; i++ ) {
   // console.log(station_list[i].id);
   document.getElementById(station_list[i].id).addEventListener("click", update_info);
+  document.getElementById(station_list[i].id).children[0].addEventListener("click", update_info);
 }
