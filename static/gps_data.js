@@ -21,8 +21,9 @@ var get_data = function(station_id) {
 
 var add_node = function(list, element) {
   var node = document.createElement("li");
-  node.innerHTML = list[4] + ' train from ' + list[2] + '. <span class="label label-default">' + (Math.round(list[1] * 100)/100).toString() + ' mi away <span class="glyphicon glyphicon-road"></span></span> ';
-  node.innerHTML += '<span class="label label-default">' + Math.round(parseInt(list[0])).toString() + ' min <span class="glyphicon glyphicon-time"></span></span>';
+  node.className = "list-group-item";
+  node.innerHTML = '<b>' + list[4] + '</b> train from ' + list[2] + '<br><span class="label label-default">' + (Math.round(list[1] * 100)/100).toString() + ' mi away <span class="glyphicon glyphicon-road"></span></span>';
+  node.innerHTML += '  <span class="label label-default">' + Math.round(parseInt(list[0])).toString() + ' min <span class="glyphicon glyphicon-time"></span></span>';
   element.appendChild(node);
 };
 

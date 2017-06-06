@@ -49,7 +49,6 @@ h3 img {
   text-decoration: none;
 }
 .list-group-item .dropdown-menu {
-  padding-left: 10%;
   width: 100%;
 }
 
@@ -58,6 +57,7 @@ h3 img {
   display: flex;
   -webkit-justify-content: space-around;
   justify-content: space-around;
+  width: 100%;
 }
 .drop_left {
   display: block;
@@ -66,4 +66,9 @@ h3 img {
 .drop_right {
   display: block;
   float: right;
+}
+
+.list_stations {
+  padding-left: 0%;
+  padding-right: 0%;
 }

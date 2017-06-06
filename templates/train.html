@@ -41,12 +41,12 @@
      {% for station in stops %}
      <li class="list-group-item station" id="{{ station|replace(" ", "_") }}">
        <a class="dropdown-toggle" type="button" data-toggle="dropdown">{{ station }}<span class="caret"></a></span>
-       <ul class="dropdown-menu">
+       <ul class="dropdown-menu list_stations">
          <div class="container-fluid box">
-         <div class="col-sm-4">
+         <div class="col-lg-4">
            <li><b>Uptown Trains:</b></li>
          </div>
-         <div class="col-sm-4">
+         <div class="col-lg-4">
            <li><b>Downtown Trains:</b></li>
          </div>
          </div>

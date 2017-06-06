@@ -36,22 +36,22 @@
    </nav>
 
    <h3 style="text-align: center;">Nearest Trains</h3>
-  <ul class="list-group train">
-    {% for station in stops %}
-    <li class="list-group-item station" id="{{ station|replace(" ", "_") }}">
-      <a class="dropdown-toggle" type="button" data-toggle="dropdown">{{ station }}<span class="caret"></a></span>
-      <ul class="dropdown-menu">
-        <div class="container-fluid box">
-        <div class="col-sm-4">
-          <li><b>Uptown Trains:</b></li>
-        </div>
-        <div class="col-sm-4">
-          <li><b>Downtown Trains:</b></li>
-        </div>
-        </div>
-        </div>
-      </ul>
-    </li>
+   <ul class="list-group train">
+     {% for station in stops %}
+     <li class="list-group-item station" id="{{ station|replace(" ", "_") }}">
+       <a class="dropdown-toggle" type="button" data-toggle="dropdown">{{ station }}<span class="caret"></a></span>
+       <ul class="dropdown-menu list_stations">
+         <div class="container-fluid box">
+         <div class="col-lg-4">
+           <li><b>Uptown Trains:</b></li>
+         </div>
+         <div class="col-lg-4">
+           <li><b>Downtown Trains:</b></li>
+         </div>
+         </div>
+         </div>
+       </ul>
+     </li>
      {% endfor %}
   </ul>
   <script src="../static/gps_data.js"></script>
