@@ -173,7 +173,7 @@ sid = "137N"
 def get_station_name(stop_id):
     return stations.d[stop_id]
 
-#print "Station Name: " + str(get_station_name(sid))
+#print "Station Name: " + str(get_station_name('234N'))
     
 '''
 # sample call
