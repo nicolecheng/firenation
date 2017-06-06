@@ -402,17 +402,18 @@ def get_dist(origin,destination,train_num,direction):
         else:
             line=STOPS["6"]
             t=lonlat.get_d6()
-    ori=line.index(origin)
-    dest=line.index(destination)
-    time=0
-    distance=0.0
-    while ori<dest:
-        minutes=t[ori][1].split()[0]
-        time+=int(minutes)
-        miles=t[ori][0].split()[0]
-        distance+=float(miles)
-        ori+=1
-    return [time,distance]
+    if origin in line and destination in line:
+        ori=line.index(origin)
+        dest=line.index(destination)
+        time=0
+        distance=0.0
+        while ori<dest:
+            minutes=t[ori][1].split()[0]
+            time+=int(minutes)
+            miles=t[ori][0].split()[0]
+            distance+=float(miles)
+            ori+=1
+        return [time,distance]
 
 #print get_dist('Van Cortlandt Park - 242 St','Marble Hill - 225 St',1,'S')
 #print get_dist('Canal St','33 St',6,'N')
@@ -420,14 +421,11 @@ def get_dist(origin,destination,train_num,direction):
 #print get_dist('59 St','174 St',5,'N')
 #print get_dist('Chambers St','34 St - Penn Station',1,'N')
 
-# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...]}
 
-def train_dict(train_num,station_name):
-    #print 111111111111111111111111111111111
+def train_dict_old(train_num,station_name):
     n = get_trains(train_num)
     up = n[0]
     down = n[1]
-    d = {}
     train_num = int(train_num)
     if train_num==1:
         train_list=STOPS["1"]
@@ -461,48 +459,21 @@ def train_dict(train_num,station_name):
             j.append(train_num)
             if not j in m:
                 m.append(j)
-    d[station_name] = sorted(m)
-    return d
+    return sorted(m)
 
-# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...], ...}
 
-def train_dict1(train_num):
-    n = get_trains(train_num)
-    up = n[0]
-    down = n[1]
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...]}
+def train_dict(train_num,station_name):
+    q=lonlat.get_possible_trains(station_name) # i.e. ['1','2','3']
     d = {}
-    if train_num==1:
-        train_list=STOPS["1"]
-    elif train_num==2:
-        train_list=STOPS["2"]
-    elif train_num==3:
-        train_list=STOPS["3"]
-    elif train_num==4:
-        train_list=STOPS["4"]
-    elif train_num==5:
-        train_list=STOPS["5"]
-        #print train_list
-    elif train_num==6:
-        train_list=STOPS["6"]
-    rev=train_list[::-1]
-    for stop in train_list:
-        m = []
-        for i in up:
-            if i in rev and rev.index(i)<rev.index(stop) and not(rev.index(i)==0):
-                prev = rev[rev.index(i)-1]
-                j=(get_dist(i,stop,train_num,'N'))
-                j.append(prev)
-                j.append('uptown')
-                m.append(j)
-        for i in down:
-            if i in train_list and train_list.index(i)<train_list.index(stop) and not (train_list.index(i)==0):
-                prev=train_list[train_list.index(i)-1]
-                j=get_dist(i,stop,train_num,'S')
-                j.append(prev)
-                j.append('downtown')
-                m.append(j)
-        d[stop] = m
+    p = []
+    for a in q:
+        k = train_dict_old(a,station_name)
+        p.extend(k)
+    d[station_name]=p
     return d
+
+print train_dict(2,'Chambers St')
 
 # returns list of trains going to a particular station
 def get_trains_going_to_station(station_name):
@@ -662,6 +633,49 @@ def measureTime():
 
 
 '''
+# {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...]}
+
+def train_dict_old(train_num,station_name):
+    #print 111111111111111111111111111111111
+    n = get_trains(train_num)
+    up = n[0]
+    down = n[1]
+    d = {}
+    train_num = int(train_num)
+    if train_num==1:
+        train_list=STOPS["1"]
+    elif train_num==2:
+        train_list=STOPS["2"]
+    elif train_num==3:
+        train_list=STOPS["3"]
+    elif train_num==4:
+        train_list=STOPS["4"]
+    elif train_num==5:
+        train_list=STOPS["5"]
+    elif train_num==6:
+        train_list=STOPS["6"]
+    rev=train_list[::-1]
+    m = []
+    for i in up:
+        if i in rev and rev.index(i)<rev.index(station_name) and not(rev.index(i)==0):
+            prev = rev[rev.index(i)-1]
+            j=(get_dist(i,station_name,train_num,'N'))
+            j.append(prev)
+            j.append('uptown')
+            j.append(train_num)
+            if not j in m:
+                m.append(j)
+    for i in down:
+        if i in train_list and train_list.index(i)<train_list.index(station_name) and not (train_list.index(i)==0):
+            prev=train_list[train_list.index(i)-1]
+            j=get_dist(i,station_name,train_num,'S')
+            j.append(prev)
+            j.append('downtown')
+            j.append(train_num)
+            if not j in m:
+                m.append(j)
+    d[station_name] = sorted(m)
+    return d
 
 # {'station_name':[[dist, eta, 'uptown'],[...],...]}
 def train_dict1(train_num,station_name):
