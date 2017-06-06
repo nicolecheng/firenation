@@ -5,10 +5,10 @@ In this Flask app, we will provide users with real-time MTA updates: where train
 
 ## Installation:
 ### Using easy_install
-easy_install --upgrade gtfs-realtime-bindings
+- easy_install --upgrade gtfs-realtime-bindings
 
 ### Using pip
-pip install --upgrade gtfs-realtime-bindings
+- pip install --upgrade gtfs-realtime-bindings
 
 ## How to Use:
 - Click on which train you are interested in.
