@@ -473,7 +473,7 @@ def train_dict(train_num,station_name):
     d[station_name]=p
     return d
 
-print train_dict(2,'Chambers St')
+#print train_dict(2,'Chambers St')
 
 # returns list of trains going to a particular station
 def get_trains_going_to_station(station_name):
