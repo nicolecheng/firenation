@@ -164,10 +164,8 @@ mtaapi.herokuapp.com/stop?id=140S
 '''
 
 #sid = get_stop_id(e)
-<<<<<<< HEAD
-=======
+
 sid = "137N"
->>>>>>> origin/master
 
 # returns the station name given the stop id
 def get_station_name(stop_id):
