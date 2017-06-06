@@ -1,11 +1,11 @@
-Team Fire Nation
+Team Fire Nation pd9
 -------------------------------------------------------------------------------
                     Devlog
 -------------------------------------------------------------------------------
 Format: firstL -- TIMESTAMP
 
 ziyanL -- 2017-05-11 @12:30
-	Added design document
+	added design document
 
 jessicaY -- 2017-05-12 @12:15
 	added app.py and essential python files
@@ -119,3 +119,31 @@ yikaiW -- 2017-06-04 @18:20
 	finished AJAX
 	tesing AJAX, removed utils
 	editing gps.html
+
+yikaiW -- 2017-06-04 @20:02
+        worked on gps.js
+	continued improving frontend
+
+jessicaY -- 2017-06-05 @13:30
+	wrote new eta functions
+
+nicoleC -- 2017-06-05 @13:48
+	made new files for station name and id dictionaries
+	realigned feed entity indices
+
+yikaiW -- 2017-06-05 @17:40
+       	improved the rounding mechanisms in data.js
+	continued working on frontend
+
+ziyanL -- 2017-06-05 @23:13
+        worked on gps.html
+
+jessicaY -- 2017-06-05 @23:30
+	matched trains up real-time
+	worked on gps functions
+
+nicoleC -- 2017-06-06 @00:38
+	redid the train dictionaries for overlapping stations
+
+yikaiW -- 2017-06-06 @00:43
+        debugged and fixed everything to make functional!
