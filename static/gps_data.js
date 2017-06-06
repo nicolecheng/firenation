@@ -1,6 +1,5 @@
 // Initialization
 var station_list = document.getElementsByClassName("station");
-var train_name = document.getElementById("train_name").value
 var result = [];
 // Data Retrieval
 var get_data = function(station_id) {

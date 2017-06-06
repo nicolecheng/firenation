@@ -2,12 +2,12 @@
 <html>
     <head>
         <link rel="shortcut icon" href="#" />
-        <link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../static/overwrite.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='overwrite.css') }}">
         <link href="https://fonts.googleapis.com/css?family=Black+Ops+One|Bungee+Shade|Permanent+Marker" rel="stylesheet">
 
-        <script src="../static/bootstrap/js/jquery.min.js"></script>
-        <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{ url_for('static', filename='bootstrap/js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 
         <title>Fire Nation</title>
     </head>
@@ -54,7 +54,7 @@
      </li>
      {% endfor %}
   </ul>
-  <script src="../static/gps_data.js"></script>
-  <script src="../static/gps.js"></script>
+  <script src="{{ url_for('static', filename='gps_data.js') }}"></script>
+  <script src="{{ url_for('static', filename='gps.js') }}"></script>
 </body>
 </html>
