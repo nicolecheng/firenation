@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, redirect, url_for, request, jsonify
-from utils import analyze, map
+from utils import analyze, map, stations
 
 app = Flask(__name__)
 feed = analyze.get_feed()

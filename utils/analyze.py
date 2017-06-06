@@ -237,7 +237,7 @@ def get_etas(stop_id):
         sorted_etas = sorted(etas, key=itemgetter(0,1))
     return sorted_etas
 
-print "Estimated Arrival Times for a Station: " + str(get_etas(sid))
+#print "Estimated Arrival Times for a Station: " + str(get_etas(sid))
 
 '''
 # sample call
@@ -568,7 +568,7 @@ def get_trains_at_station(station_name, train_name):
             
     return traveling
 
-print get_trains_at_station("Chambers St", "2")
+#print get_trains_at_station("Chambers St", "2")
 
 api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 # returns the nearest train station within a 400 m radius given a latitude and longitude
