@@ -1,0 +1,74 @@
+.alert {
+  width: 44%;
+  margin: auto;
+}
+
+.row {
+  margin: auto;
+  width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+/*.col-sm-3:not(:first-child) {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-left: 1px solid #A9A9A9;
+}*/
+
+.col-sm-3 h5 {
+  padding-top: 0px;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: #D3D3D3;
+}
+
+.col-sm-3 img {
+  display: block;
+  margin: 0 auto;
+}
+
+h3 img {
+  line-height: 1.1em;
+  vertical-align: bottom;
+}
+
+.col-sm-3 h4 {
+  padding-left: 6%;
+}
+
+.train {
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 60%;
+}
+.list-group-item a {
+  text-decoration: none;
+}
+.list-group-item .dropdown-menu {
+  width: 100%;
+}
+
+.box {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  width: 100%;
+}
+.drop_left {
+  display: block;
+  float: left;
+}
+.drop_right {
+  display: block;
+  float: right;
+}
+
+.list_stations {
+  padding-left: 0%;
+  padding-right: 0%;
+}
