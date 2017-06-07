@@ -1,5 +1,0 @@
-Changes we made:
-
-- At first, we were only thinking about using the MTA API for all our data. However, the information that we could gather from the MTA’s API was very limited and unclear. As such, we were forced to look for other alternatives to help parse the information we retrieved from MTA’s API. 
-- Since we were limited in the information we could get from the MTA API, we worked around this obstacle by hardcoding a lot of the information that was scattered between all of the APIs we used. By consolidating all the information into various files, we were also able to cut down on the time it takes to run our functions. 
-- We did not get to tackle alerts and important messages from the MTA as we had planned. Part of this was to due the MTA’s vague descriptions of alerts. We were unable to link where a delay had happened, why it happened, or how long it had occurred. The only information we did receive was that there was a delay, somewhere at that moment. It would be very hard to incorporate alerts into our project if we knew next to nothing about the alerts. 
