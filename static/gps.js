@@ -4,7 +4,7 @@ function getLocation() {
             function(failure) {
                 var loc;
                 $.getJSON('https://ipinfo.io/geo', function(response) {
-                  loc = response.loc.split(',');
+                  loc = response["loc"]split(',');
                 });
                 window.location = "/gps/" + loc[0] + "+" + loc[1] + "/";
             }
