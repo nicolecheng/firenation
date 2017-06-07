@@ -602,12 +602,13 @@ def nearest_station(lat,lon):
     lon = float(lon)
     head = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
     mid = "key=%s&location=%f,%f" % (api_key, lat, lon)
-    end = "&radius=400&language=zh-TW&types=subway_station"
+    end = "&radius=800&language=zh-TW&types=subway_station"
     new_url = head + mid + end
     page = urllib2.urlopen(new_url).read()
 
     #station = ""
     places = json.loads(page)
+    print places
     if places['status'] == 'OK':
         for result in places['results']:
             place_id = result['place_id']
@@ -620,6 +621,7 @@ def nearest_station(lat,lon):
             detail = json.loads(page)
 
             station = detail['result']['name']
+            # print station
         return station
 
 #print nearest_station("40.718803", "-74.000193") # Canal St
