@@ -2,11 +2,11 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition,
             function(failure) {
-                var loc;
                 $.getJSON('https://ipinfo.io/geo', function(response) {
-                  loc = response["loc"].split(',');
+                  var loc = response["loc"].split(',');
+                  console.log(loc);
+                  window.location = "/gps/" + loc[0] + "+" + loc[1] + "/";
                 });
-                window.location = "/gps/" + loc[0] + "+" + loc[1] + "/";
             }
         );
     } else {
