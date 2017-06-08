@@ -23,7 +23,20 @@ var add_node = function(list, element) {
   var node = document.createElement("li");
   node.className = "list-group-item";
   node.innerHTML = '<b>' + list[4] + '</b> train from ' + list[2] + '<br><span class="label label-default">' + (Math.round(list[1] * 100)/100).toString() + ' mi away <span class="glyphicon glyphicon-road"></span></span>';
-  node.innerHTML += '  <span class="label label-default">' + Math.round(parseInt(list[0])).toString() + ' min <span class="glyphicon glyphicon-time"></span></span>';
+  node.innerHTML += ' <span class="label label-default">' + Math.round(parseInt(list[0])).toString() + ' min <span class="glyphicon glyphicon-time"></span></span>';
+  element.appendChild(node);
+};
+
+var add_node_backup = function(list, element) {
+  var node = document.createElement("li");
+  node.className = "list-group-item";
+  node.style.paddingTop = "10px";
+  node.style.paddingBottom = "10px";
+  node.style.paddingLeft = "3%";
+  node.style.paddingRight = "1%";
+  node.style.width = "60%";
+  node.innerHTML = '<b>' + list[1] + '</b> train ';
+  node.innerHTML += '<span class="label label-default" style="line-height: normal; margin-left: 4%;">' + Math.round(parseInt(list[0])).toString() + ' min <span class="glyphicon glyphicon-time"></span></span>';
   element.appendChild(node);
 };
 
@@ -34,15 +47,35 @@ var append_data = function(data, station_id) {
   var list_trains = data[station_id.split("_").join(" ")];
   var element = document.getElementById(station_id).children[1].children[0];
 
-  var length = (list_trains.length > 14)? 14 : list_trains.length;
+  var long = (list_trains[0].length > 3) ? true : false
+  var length;
+  if (long && list_trains.length > 14) {
+      length = 14;
+  }
+  else if (list_trains.length > 22) {
+      length = 22;
+  }
+  else {
+      length = list_trains.length;
+  }
 
   for( var i = 0; i < length; i++ ) {
+    if (long) {
       if (list_trains[i][3] == "uptown") {
           add_node(list_trains[i], element.children[0]);
       }
       else if (list_trains[i][3] == "downtown") {
           add_node(list_trains[i], element.children[1]);
       }
+    }
+    else {
+      if (list_trains[i][2] == "uptown") {
+          add_node_backup(list_trains[i], element.children[0]);
+      }
+      else if (list_trains[i][2] == "downtown") {
+          add_node_backup(list_trains[i], element.children[1]);
+      }
+    }
   }
 
 };

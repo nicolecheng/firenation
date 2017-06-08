@@ -1,14 +1,14 @@
 from google.transit import gtfs_realtime_pb2
-from datetime import datetime, date
+from time import time
 import urllib, urllib2, json, math
 import lonlat, map, unicodedata
 from operator import itemgetter
-import time
 import stations
 
 #[[train,[stops]],[train,[stops]],...]
 alltrains = []
 feed = gtfs_realtime_pb2.FeedMessage()
+is_feed = True
 
 # updates global list alltrains, containing all trains
 def all_trains():
@@ -22,11 +22,15 @@ def all_trains():
 
 def setup():
     try:
-        response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=98df1a1bb43961262574931b96b28fd6&feed_id=1')
+        response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=3a4dc71d1253cfb47a15eb3dfa2a86a5&feed_id=1')
+        # print response.read()
         feed.ParseFromString(response.read())
         all_trains()
+        e = feed.entity[0]
+        print e
+        print feed
     except:
-        setup()
+        is_feed = False
 
 setup()
 
@@ -38,13 +42,14 @@ STOPS = {"1": ["Van Cortlandt Park - 242 St", "238 St", "231 St", "Marble Hill -
 "86 St", "59 St", "Grand Central - 42 St", "14 St - Union Sq", "Brooklyn Bridge - City Hall", "Fulton St", "Wall St", "Bowling Green", "Borough Hall", "Nevins St", "Atlantic Av - Barclays Ctr", "Franklin Av", "President St", "Sterling St", "Winthrop St", "Church Av", "Beverly Rd", "Newkirk Av", "Flatbush Av - Brooklyn College"],
          "6": ["Pelham Bay Park", "Buhre Av", "Middletown Rd", "Westchester Sq - E Tremont Av", "Zerega Av", "Castle Hill Av", "Parkchester", "St Lawrence Av", "Morrison Av- Sound View", "Elder Av", "Whitlock Av", "Hunts Point Av", "Longwood Av", "E 149 St", "E 143 St - St Mary's St", "Cypress Av", "Brook Av", "3 Av - 138 St", "125 St", "116 St", "110 St", "103 St", "96 St", "86 St", "77 St", "68 St - Hunter College", "59 St", "51 St", "Grand Central - 42 St", "33 St", "28 St", "23 St", "14 St - Union Sq", "Astor Pl", "Broadway-Lafayette St", "Spring St", "Canal St", "Brooklyn Bridge - City Hall"]}
 
+
+# In case GTFS doesn't load
+all_stations = {'Beverly Rd': '245', 'Christopher St - Sheridan Sq': '133', '225 St': '206', '231 St': '104', '238 St': '103', 'Buhre Av': '602', 'Brooklyn Bridge - City Hall': '640', 'Hunts Point Av': '613', 'Bronx Park East': '212', '137 St - City College': '115', 'Bedford Park Blvd - Lehman College': '405', 'Mt Eden Av': '411', 'St Lawrence Av': '609', 'Burnside Av': '409', 'Brook Av': '618', 'Eastern Pkwy - Brooklyn Museum': '238', '116 St': '622', 'Bergen St': '236', '59 St': '629', '233 St': '205', 'Elder Av': '611', 'Gun Hill Rd': '208', '86 St': '626', 'Baychester Av': '502', '207 St': '108', 'Westchester Sq - E Tremont Av': '604', '215 St': '107', 'Castle Hill Av': '607', '191 St': '110', 'Kingsbridge Rd': '406', 'Borough Hall': '423', '167 St': '413', '68 St - Hunter College': '628', '28 St': '633', 'Allerton Av': '210', '103 St': '624', 'Newkirk Av': '246', 'Times Sq - 42 St': '127', '149 St - Grand Concourse': '222', 'Crown Hts - Utica Av': '250', 'Spring St': '638', '77 St': '627', '3 Av - 138 St': '619', 'E 149 St': '615', 'Franklin Av': '239', '59 St - Columbus Circle': '125', '183 St': '408', '23 St': '634', 'Wall St': '419', 'Woodlawn': '401', 'Freeman St': '216', 'Jackson Av': '220', '135 St': '224', 'Bleecker St': '637', 'Grand Army Plaza': '237', '34 St - Penn Station': '128', 'Sutter Av - Rutland Rd': '251', 'Rector St': '139', '157 St': '113', 'E 180 St': '213', 'Harlem - 148 St': '301', '145 St': '302', 'Bowling Green': '420', 'New Lots Av': '257', 'President St': '241', 'Nevins St': '234', 'West Farms Sq - E Tremont Av': '214', 'Fordham Rd': '407', '138 St - Grand Concourse': '416', 'Grand Central - 42 St': '631', 'Dyckman St': '109', 'Intervale Av': '218', "E 143 St - St Mary's St": '616', 'Morrison Av- Sound View': '610', '14 St - Union Sq': '635', 'Simpson St': '217', 'Wakefield - 241 St': '201', 'Hoyt St': '233', 'Astor Pl': '636', '110 St': '623', 'Houston St': '134', '96 St': '625', 'Cathedral Pkwy': '118', 'Eastchester - Dyre Av': '501', 'Junius St': '254', 'Franklin St': '136', 'Saratoga Av': '252', 'Nereid Av': '204', '18 St': '131', 'Van Siclen Av': '256', 'Clark St': '231', 'Prospect Av': '219', 'Cortlandt St': '138', 'Central Park North (110 St)': '227', '125 St': '621', 'Sterling St': '242', '219 St': '207', '174 St': '215', '14 St': '132', 'Pennsylvania Av': '255', 'Church Av': '244', '168 St - Washington Hts': '112', '170 St': '412', 'Fulton St': '418', 'Cypress Av': '617', 'Morris Park': '505', 'Pelham Pkwy': '211', 'Mosholu Pkwy': '402', '72 St': '123', 'Rockaway Av': '253', 'Burke Av': '209', 'Atlantic Av': '235', '50 St': '126', '66 St - Lincoln Center': '124', 'Winthrop St': '243', 'Longwood Av': '614', 'Zerega Av': '606', 'Middletown Rd': '603', '176 St': '410', 'Flatbush Av - Brooklyn College': '247', 'Nostrand Av': '248', '79 St': '122', 'Pelham Bay Park': '601', 'Whitlock Av': '612', 'South Ferry': '140', 'Chambers St': '137', 'Park Pl': '228', 'Canal St': '639', 'Van Cortlandt Park - 242 St': '101', '116 St - Columbia University': '117', '3 Av - 149 St': '221', 'Parkchester': '608', 'Kingston Av': '249', '161 St - Yankee Stadium': '414', '51 St': '630', 'Marble Hill - 225 St': '106', '181 St': '111', '33 St': '632'}
 #-------------------------------------------------------------------
 
 #-----------------------------MTA API-------------------------------
 
 #-------------------------------------------------------------------
-
-e = feed.entity[0]
 
 # returns the current feed
 def get_feed():
@@ -167,7 +172,7 @@ mtaapi.herokuapp.com/stop?id=140S
 
 #sid = get_stop_id(e)
 
-sid = "137N"
+# sid = "137N"
 
 # returns the station name given the stop id
 def get_station_name(stop_id):
@@ -461,27 +466,70 @@ def train_dict_old(train_num,station_name):
                 m.append(j)
     return sorted(m)
 
+def backup_feed(station_name):
+    mta_id = all_stations[station_name]
+    now = int(round(time()))
+    url = "http://apps.mta.info/trainTime/getTimesByStation.aspx?stationID=" + mta_id + "&&time=" + str(now)
+    response = urllib2.urlopen(url).readlines()
+    # print response
+
+    sever_timestamp = -1
+
+    d = {}
+    l = []
+    for i in response:
+            i = i.strip()
+            if "serverTimeStamp=" in i:
+                    sever_timestamp = int(i[16:-1])
+            elif "direction1[" in i:
+                    data = i.split("='")[1].split(",")
+                    train = data[0] if data[0][-1].lower() != "x" else data[0][:-1]
+                    diff = int(data[1]) if len(data[1]) > 1 else int(data[2])
+                    diff = abs(diff - sever_timestamp)/60.0
+                    l.append([diff, train, "uptown"])
+
+            elif "direction2[" in i:
+                    data = i.split("='")[1].split(",")
+                    train = data[0] if data[0][-1].lower() != "x" else data[0][:-1]
+                    diff = int(data[1]) if len(data[1]) > 1 else int(data[2])
+                    diff = abs(diff - sever_timestamp)/60.0
+                    l.append([ diff, train, "downtown"])
+
+    # print l
+    d[station_name] = sorted(l)
+    return d
 
 # {'station_name':[[dist, eta, last_station_train_was_at, 'uptown'],[...],...]}
 def train_dict(train_num,station_name):
-    q=lonlat.get_possible_trains(station_name) # i.e. ['1','2','3']
-    d = {}
     p = []
-    for a in q:
-        k = train_dict_old(a,station_name)
-        p.extend(k)
+    d = {}
+
+    if is_feed:
+        q=lonlat.get_possible_trains(station_name) # i.e. ['1','2','3']
+        for a in q:
+            k = train_dict_old(a,station_name)
+            p.extend(k)
+
+    if len(p) == 0:
+        return backup_feed(station_name)
+
     d[station_name]= sorted(p)
     return d
 
 #print train_dict(2,'Chambers St')
 
 def gps_dict(station_name):
-    q = lonlat.get_possible_trains(station_name)
-    d = {}
-    p = []
-    for a in q:
-        k = train_dict_old(a,station_name)
-        p.extend(k)
+    if is_feed:
+        q = lonlat.get_possible_trains(station_name)
+        d = {}
+        p = []
+        for a in q:
+            k = train_dict_old(a,station_name)
+            p.extend(k)
+
+    if len(p) == 0:
+        return backup_feed(station_name)
+
     d[station_name]= sorted(p)
     return d
 
