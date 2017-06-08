@@ -416,7 +416,7 @@ def get_dist(origin,destination,train_num,direction):
         dest=line.index(destination)
         time=0
         distance=0.0
-        while ori<dest:
+        while ori<dest and ori < len(t):
             minutes=t[ori][1].split()[0]
             time+=int(minutes)
             miles=t[ori][0].split()[0]
@@ -436,6 +436,7 @@ def train_dict_old(train_num,station_name):
     up = n[0]
     down = n[1]
     train_num = int(train_num)
+    station_name = str(station_name)
     if train_num==1:
         train_list=STOPS["1"]
     elif train_num==2:
@@ -513,7 +514,7 @@ def train_dict(train_num,station_name):
     p = []
     d = {}
 
-    print train_num
+    # print train_num
     if is_feed:
         if int(train_num) == 1:
             l = lonlat.get_one()
