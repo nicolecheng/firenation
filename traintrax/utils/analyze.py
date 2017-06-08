@@ -27,8 +27,8 @@ def setup():
         feed.ParseFromString(response.read())
         all_trains()
         e = feed.entity[0]
-        print e
-        print feed
+        # print e
+        # print feed
     except:
         is_feed = False
 
@@ -513,8 +513,21 @@ def train_dict(train_num,station_name):
     p = []
     d = {}
 
+    print train_num
     if is_feed:
-        q=lonlat.get_possible_trains(station_name) # i.e. ['1','2','3']
+        if int(train_num) == 1:
+            l = lonlat.get_one()
+        elif int(train_num) == 2:
+            l = lonlat.get_two()
+        elif int(train_num) == 3:
+            l = lonlat.get_three()
+        elif int(train_num) == 4:
+            l = lonlat.get_four()
+        elif int(train_num) == 5:
+            l = lonlat.get_five()
+        else:
+            l = lonlat.get_six()
+        q = lonlat.get_possible_trains(station_name, l)
         for a in q:
             k = train_dict_old(a,station_name)
             p.extend(k)
@@ -527,21 +540,21 @@ def train_dict(train_num,station_name):
 
 #print train_dict(2,'Chambers St')
 
-def gps_dict(station_name):
-    q = lonlat.get_possible_trains(station_name)
-    d = {}
-    p = []
-    for a in q:
-        if is_feed:
-            k = train_dict_old(a,station_name)
-        else:
-            k = backup_feed(a, station_name)[station_name]
-        if len(k) < 1:
-            k = backup_feed(a, station_name)[station_name]
-        p.extend(k)
-
-    d[station_name]= sorted(p)
-    return d
+# def gps_dict(station_name):
+#     q = lonlat.get_possible_trains(station_name)
+#     d = {}
+#     p = []
+#     for a in q:
+#         if is_feed:
+#             k = train_dict_old(a,station_name)
+#         else:
+#             k = backup_feed(a, station_name)[station_name]
+#         if len(k) < 1:
+#             k = backup_feed(a, station_name)[station_name]
+#         p.extend(k)
+#
+#     d[station_name]= sorted(p)
+#     return d
 
 # returns list of trains going to a particular station
 def get_trains_going_to_station(station_name):
@@ -653,34 +666,26 @@ def get_trains_at_station(station_name):
 
 #print get_trains_at_station("Chambers St")
 
-api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
+# api_key = "AIzaSyDo-o4IgKAzVyojqTjjtxoWPRBmIkpyaLo"
 # returns the nearest train station within a 400 m radius given a latitude and longitude
-def nearest_station(lat,lon):
-    lat = float(lat)
-    lon = float(lon)
-    head = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-    mid = "key=%s&location=%f,%f" % (api_key, lat, lon)
-    end = "&radius=800&language=zh-TW&types=subway_station"
-    new_url = head + mid + end
-    page = urllib2.urlopen(new_url).read()
+radius = 1
+def nearest_stations(lat_orig,long_orig):
+    lat_orig = float(lat_orig)
+    long_orig = float(long_orig)
 
-    #station = ""
-    places = json.loads(page)
-    print places
-    if places['status'] == 'OK':
-        for result in places['results']:
-            place_id = result['place_id']
+    all_compatible = []
+    all_trains = lonlat.give_all()
+    for l in all_trains:
+        lat_dest = float(l[1])
+        long_dest = float(l[2])
+        d = get_distance_between_coordinates(lat_orig, long_orig, lat_dest, long_dest)
+        # print d
+        if d <= radius:
+            all_compatible.append([ round(d * 100)/100, l[0], l[3][0] ])
 
-            head = "https://maps.googleapis.com/maps/api/place/details/"
-            mid = "json?key=%s&placeid=%s" % (api_key, place_id)
-            end = "&language=zh-TW"
-            new_url = head + mid + end
-            page = urllib2.urlopen(new_url).read()
-            detail = json.loads(page)
+    return sorted(all_compatible)
 
-            station = detail['result']['name']
-            # print station
-        return station
+
 
 #print nearest_station("40.718803", "-74.000193") # Canal St
 #print nearest_station("40.855225", "-73.929412") # 191 St

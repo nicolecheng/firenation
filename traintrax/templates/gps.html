@@ -38,8 +38,9 @@
    <h3 style="text-align: center;">Nearest Trains</h3>
    <ul class="list-group train">
      {% for station in stops %}
-     <li class="list-group-item station" id="{{ station|replace(" ", "_") }}">
-       <a class="dropdown-toggle" type="button" data-toggle="dropdown">{{ station }}<span class="caret"></span></a>
+     <li class="list-group-item station" id="{{ station[1]|replace(" ", "_") }}">
+       <input type="hidden" value="{{ station[2] }}">
+       <a class="dropdown-toggle" type="button" data-toggle="dropdown">{{ station[1] }}<span class="caret"></span>  <span class="badge" style="margin-left: 3%;">{{ station[0] }} miles away</span></a>
        <ul class="dropdown-menu list_stations">
          <div class="container-fluid box">
          <div class="col-lg-4">

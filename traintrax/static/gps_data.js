@@ -3,8 +3,9 @@ var station_list = document.getElementsByClassName("station");
 var result = [];
 // Data Retrieval
 var get_data = function(station_id) {
+    var train_name = document.getElementById(station_id).children[0].value;
     $.ajax({
-    	url: '/data/' + station_id + "/",
+    	url: '/data/' + train_name + "/" + station_id + "/",
     	dataType: 'json',
     	async: false,
     	success: function(data){
@@ -44,7 +45,7 @@ var append_data = function(data, station_id) {
   // console.log(station_id.split("_").join(" "));
   // console.log(data);
   var list_trains = data[station_id.split("_").join(" ")];
-  var element = document.getElementById(station_id).children[1].children[0];
+  var element = document.getElementById(station_id).children[2].children[0];
 
   var long = (list_trains[0].length > 3) ? true : false
   var length;
@@ -91,7 +92,7 @@ var update_info = function(e) {
   }
   // console.log(station_id);
 
-  var element = document.getElementById(station_id).children[1].children[0];
+  var element = document.getElementById(station_id).children[2].children[0];
   while (element.children[0].children.length > 1) {
     element.children[0].removeChild(element.children[0].lastChild);
   }
@@ -106,4 +107,5 @@ for( var i = 0; i < station_list.length; i++ ) {
   // console.log(station_list[i].id);
   document.getElementById(station_list[i].id).addEventListener("click", update_info);
   document.getElementById(station_list[i].id).children[0].addEventListener("click", update_info);
+  document.getElementById(station_list[i].id).children[1].addEventListener("click", update_info);
 }

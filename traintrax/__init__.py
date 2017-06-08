@@ -24,24 +24,15 @@ def station(train_name, station_id):
     #print result
     return jsonify(result=result)
 
-# dictionary with one key
-# key is station name with underscore in place of space
-@app.route("/data/<station_id>/")
-def station_gps(station_id):
-    station_name = station_id.replace("_", " ")
-    result = analyze.gps_dict(station_name)
-##    #print result
-    return jsonify(result=result)
-
 # coordinates is lat + long
 # remember to split by +
 @app.route("/gps/<coordinates>/", methods = ['GET', 'POST'])
 def gps(coordinates):
     coor = coordinates.split("+")
-    lat = coor[0]
-    lon = coor[1]
+    lat_orig = coor[0]
+    long_orig = coor[1]
     #result = analyze.get_gps(lat,lon)
-    result = [analyze.nearest_station(lat,lon)]
+    result = analyze.nearest_stations(lat_orig,long_orig)
     return render_template('gps.html', stops = result)
 
 
