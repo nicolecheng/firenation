@@ -44,7 +44,11 @@ STOPS = {"1": ["Van Cortlandt Park - 242 St", "238 St", "231 St", "Marble Hill -
 
 
 # In case GTFS doesn't load
-all_stations = {'Beverly Rd': '245', 'Christopher St - Sheridan Sq': '133', '225 St': '206', '231 St': '104', '238 St': '103', 'Buhre Av': '602', 'Brooklyn Bridge - City Hall': '640', 'Hunts Point Av': '613', 'Bronx Park East': '212', '137 St - City College': '115', 'Bedford Park Blvd - Lehman College': '405', 'Mt Eden Av': '411', 'St Lawrence Av': '609', 'Burnside Av': '409', 'Brook Av': '618', 'Eastern Pkwy - Brooklyn Museum': '238', '116 St': '622', 'Bergen St': '236', '59 St': '629', '233 St': '205', 'Elder Av': '611', 'Gun Hill Rd': '208', '86 St': '626', 'Baychester Av': '502', '207 St': '108', 'Westchester Sq - E Tremont Av': '604', '215 St': '107', 'Castle Hill Av': '607', '191 St': '110', 'Kingsbridge Rd': '406', 'Borough Hall': '423', '167 St': '413', '68 St - Hunter College': '628', '28 St': '633', 'Allerton Av': '210', '103 St': '624', 'Newkirk Av': '246', 'Times Sq - 42 St': '127', '149 St - Grand Concourse': '222', 'Crown Hts - Utica Av': '250', 'Spring St': '638', '77 St': '627', '3 Av - 138 St': '619', 'E 149 St': '615', 'Franklin Av': '239', '59 St - Columbus Circle': '125', '183 St': '408', '23 St': '634', 'Wall St': '419', 'Woodlawn': '401', 'Freeman St': '216', 'Jackson Av': '220', '135 St': '224', 'Bleecker St': '637', 'Grand Army Plaza': '237', '34 St - Penn Station': '128', 'Sutter Av - Rutland Rd': '251', 'Rector St': '139', '157 St': '113', 'E 180 St': '213', 'Harlem - 148 St': '301', '145 St': '302', 'Bowling Green': '420', 'New Lots Av': '257', 'President St': '241', 'Nevins St': '234', 'West Farms Sq - E Tremont Av': '214', 'Fordham Rd': '407', '138 St - Grand Concourse': '416', 'Grand Central - 42 St': '631', 'Dyckman St': '109', 'Intervale Av': '218', "E 143 St - St Mary's St": '616', 'Morrison Av- Sound View': '610', '14 St - Union Sq': '635', 'Simpson St': '217', 'Wakefield - 241 St': '201', 'Hoyt St': '233', 'Astor Pl': '636', '110 St': '623', 'Houston St': '134', '96 St': '625', 'Cathedral Pkwy': '118', 'Eastchester - Dyre Av': '501', 'Junius St': '254', 'Franklin St': '136', 'Saratoga Av': '252', 'Nereid Av': '204', '18 St': '131', 'Van Siclen Av': '256', 'Clark St': '231', 'Prospect Av': '219', 'Cortlandt St': '138', 'Central Park North (110 St)': '227', '125 St': '621', 'Sterling St': '242', '219 St': '207', '174 St': '215', '14 St': '132', 'Pennsylvania Av': '255', 'Church Av': '244', '168 St - Washington Hts': '112', '170 St': '412', 'Fulton St': '418', 'Cypress Av': '617', 'Morris Park': '505', 'Pelham Pkwy': '211', 'Mosholu Pkwy': '402', '72 St': '123', 'Rockaway Av': '253', 'Burke Av': '209', 'Atlantic Av': '235', '50 St': '126', '66 St - Lincoln Center': '124', 'Winthrop St': '243', 'Longwood Av': '614', 'Zerega Av': '606', 'Middletown Rd': '603', '176 St': '410', 'Flatbush Av - Brooklyn College': '247', 'Nostrand Av': '248', '79 St': '122', 'Pelham Bay Park': '601', 'Whitlock Av': '612', 'South Ferry': '140', 'Chambers St': '137', 'Park Pl': '228', 'Canal St': '639', 'Van Cortlandt Park - 242 St': '101', '116 St - Columbia University': '117', '3 Av - 149 St': '221', 'Parkchester': '608', 'Kingston Av': '249', '161 St - Yankee Stadium': '414', '51 St': '630', 'Marble Hill - 225 St': '106', '181 St': '111', '33 St': '632'}
+lines456 = {'Hunts Point Av': '613', 'Bedford Park Blvd - Lehman College': '405', 'St Lawrence Av': '609', 'Burnside Av': '409', 'Eastern Pkwy - Brooklyn Museum': '238', '59 St': '629', 'Borough Hall': '423', '68 St - Hunter College': '628', 'Grand Army Plaza': '237', '103 St': '624', 'Mosholu Pkwy': '402', '77 St': '627', '23 St': '634', 'Middletown Rd': '603', 'Franklin Av': '239', 'Jackson Av': '220', 'New Lots Av': '257', 'E 149 St': '615', '110 St': '623', 'President St': '241', 'Nevins St': '234', 'Fordham Rd': '407', '138 St - Grand Concourse': '416', 'Intervale Av': '218', 'Morrison Av- Sound View': '610', 'Simpson St': '217', 'Kingsbridge Rd': '406', 'Astor Pl': '636', '96 St': '625', "E 143 St - St Mary's St": '616', 'Junius St': '254', 'Saratoga Av': '252', 'Van Siclen Av': '256', 'Westchester Sq - E Tremont Av': '604', 'Bronx Park East': '212', 'Sterling St': '242', '219 St': '207', '174 St': '215', '149 St - Grand Concourse': '415', 'Gun Hill Rd': '208', 'Pelham Pkwy': '211', 'Nereid Av': '204', 'Burke Av': '209', 'Winthrop St': '243', 'Flatbush Av - Brooklyn College': '247', 'Nostrand Av': '248', 'Pelham Bay Park': '601', 'Cypress Av': '617', 'Whitlock Av': '612', '3 Av - 149 St': '221', 'Parkchester': '608', 'Kingston Av': '249', '161 St - Yankee Stadium': '414', 'Sutter Av - Rutland Rd': '251', 'Beverly Rd': '245', '225 St': '206', '86 St': '626', 'Brooklyn Bridge - City Hall': '640', '3 Av - 138 St': '619', 'Mt Eden Av': '411', '116 St': '622', 'Bergen St': '236', '233 St': '205', 'Elder Av': '611', 'Baychester Av': '502', 'Castle Hill Av': '607', 'Brook Av': '618', '167 St': '413', '28 St': '633', 'Allerton Av': '210', 'Newkirk Av': '246', '14 St - Union Sq': '635', 'Crown Hts - Utica Av': '250', 'Spring St': '638', 'Woodlawn': '401', 'Bleecker St': '637', 'E 180 St': '213', 'Bowling Green': '420', 'West Farms Sq - E Tremont Av': '214', 'Grand Central - 42 St': '631', 'Eastchester - Dyre Av': '501', '170 St': '412', 'Rockaway Av': '253', 'Prospect Av': '219', '33 St': '632', '125 St': '621', 'Pennsylvania Av': '255', 'Church Av': '244', 'Fulton St': '418', 'Morris Park': '505', 'Atlantic Av': '235', 'Longwood Av': '614', 'Zerega Av': '606', 'Wall St': '419', '183 St': '408', 'Canal St': '639', 'Freeman St': '216', '51 St': '630', '176 St': '410', 'Buhre Av': '602'}
+
+lines23 = {'Beverly Rd': '245', 'Christopher St - Sheridan Sq': '133', '225 St': '206', '86 St': '121', 'Bronx Park East': '212', '34 St - Penn Station': '128', 'Eastern Pkwy - Brooklyn Museum': '238', '116 St': '226', 'Bergen St': '236', '233 St': '205', '18 St': '131', 'Borough Hall': '232', '28 St': '129', 'Allerton Av': '210', 'Newkirk Av': '246', 'Times Sq - 42 St': '127', '149 St - Grand Concourse': '222', 'Crown Hts - Utica Av': '250', 'Central Park North (110 St)': '227', 'Grand Army Plaza': '237', 'Wall St': '230', 'Franklin Av': '239', 'Jackson Av': '220', '135 St': '224', 'Gun Hill Rd': '208', '145 St': '302', 'President St': '241', 'Nevins St': '234', 'West Farms Sq - E Tremont Av': '214', 'E 180 St': '213', 'Intervale Av': '218', 'Simpson St': '217', 'Wakefield - 241 St': '201', 'Hoyt St': '233', 'Houston St': '134', '96 St': '120', 'Junius St': '254', 'Franklin St': '136', 'Saratoga Av': '252', 'Nereid Av': '204', 'Rockaway Av': '253', 'Van Siclen Av': '256', 'Clark St': '231', 'Prospect Av': '219', '59 St - Columbus Circle': '125', '125 St': '225', 'Sterling St': '242', '219 St': '207', '174 St': '215', '14 St': '132', 'Pennsylvania Av': '255', 'Church Av': '244', 'New Lots Av': '257', 'Pelham Pkwy': '211', '23 St': '130', '72 St': '123', 'Harlem - 148 St': '301', 'Burke Av': '209', 'Atlantic Av': '235', 'Fulton St': '229', '50 St': '126', '66 St - Lincoln Center': '124', 'Winthrop St': '243', 'Flatbush Av - Brooklyn College': '247', 'Nostrand Av': '248', '79 St': '122', 'Chambers St': '137', 'Park Pl': '228', 'Canal St': '135', 'Freeman St': '216', '3 Av - 149 St': '221', 'Kingston Av': '249', 'Sutter Av - Rutland Rd': '251'}
+
+line1 = {'Christopher St - Sheridan Sq': '133', '231 St': '104', '238 St': '103', '137 St - City College': '115', 'Houston St': '134', '96 St': '120', 'Cathedral Pkwy': '118', 'Franklin St': '136', '18 St': '131', '86 St': '121', '207 St': '108', 'Cortlandt St': '138', '215 St': '107', '125 St': '116', '191 St': '110', '14 St': '132', '28 St': '129', '103 St': '119', 'Times Sq - 42 St': '127', '72 St': '123', '59 St - Columbus Circle': '125', '23 St': '130', '50 St': '126', '66 St - Lincoln Center': '124', 'Chambers St': '137', '168 St - Washington Hts': '112', '79 St': '122', 'South Ferry': '140', '34 St - Penn Station': '128', 'Rector St': '139', 'Canal St': '135', 'Van Cortlandt Park - 242 St': '101', '157 St': '113', '145 St': '114', '116 St - Columbia University': '117', 'Marble Hill - 225 St': '106', '181 St': '111', 'Dyckman St': '109'}
 #-------------------------------------------------------------------
 
 #-----------------------------MTA API-------------------------------
@@ -466,8 +470,13 @@ def train_dict_old(train_num,station_name):
                 m.append(j)
     return sorted(m)
 
-def backup_feed(station_name):
-    mta_id = all_stations[station_name]
+def backup_feed(train_num, station_name):
+    if int(train_num) == 1:
+        mta_id = line1[station_name]
+    elif int(train_num) < 4:
+        mta_id = lines23[station_name]
+    else:
+        mta_id = lines456[station_name]
     now = int(round(time()))
     url = "http://apps.mta.info/trainTime/getTimesByStation.aspx?stationID=" + mta_id + "&&time=" + str(now)
     response = urllib2.urlopen(url).readlines()
@@ -511,7 +520,7 @@ def train_dict(train_num,station_name):
             p.extend(k)
 
     if len(p) == 0:
-        return backup_feed(station_name)
+        return backup_feed(train_num, station_name)
 
     d[station_name]= sorted(p)
     return d
@@ -519,16 +528,17 @@ def train_dict(train_num,station_name):
 #print train_dict(2,'Chambers St')
 
 def gps_dict(station_name):
-    if is_feed:
-        q = lonlat.get_possible_trains(station_name)
-        d = {}
-        p = []
-        for a in q:
+    q = lonlat.get_possible_trains(station_name)
+    d = {}
+    p = []
+    for a in q:
+        if is_feed:
             k = train_dict_old(a,station_name)
-            p.extend(k)
-
-    if len(p) == 0:
-        return backup_feed(station_name)
+        else:
+            k = backup_feed(a, station_name)[station_name]
+        if len(k) < 1:
+            k = backup_feed(a, station_name)[station_name]
+        p.extend(k)
 
     d[station_name]= sorted(p)
     return d
