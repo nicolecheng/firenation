@@ -10,6 +10,7 @@ def home():
 
 @app.route("/<train_name>/", methods = ['GET', 'POST'])
 def train(train_name):
+    analyze.setup()
     stops = analyze.get_stops(train_name)
     return render_template('train.html', stops = stops, train = train_name)
 
@@ -32,6 +33,7 @@ def gps(coordinates):
     lat_orig = coor[0]
     long_orig = coor[1]
     #result = analyze.get_gps(lat,lon)
+    analyze.setup()
     result = analyze.nearest_stations(lat_orig,long_orig)
     return render_template('gps.html', stops = result)
 

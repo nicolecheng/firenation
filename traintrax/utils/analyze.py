@@ -27,7 +27,7 @@ def setup():
         file_url += "/"
         key = open(file_url+api_filename, "r").read()
         url = 'http://datamine.mta.info/mta_esi.php?key=%s&feed_id=1' % (key)
-        
+
         response = urllib2.urlopen(url)
         # print response.read()
         feed.ParseFromString(response.read())
@@ -457,18 +457,18 @@ def train_dict_old(train_num,station_name):
     rev=train_list[::-1]
     m = []
     for i in up:
-        if i in rev and rev.index(i)<rev.index(station_name) and not(rev.index(i)==0):
+        if i in rev and rev.index(i)<=rev.index(station_name) and not(rev.index(i)==0):
             prev = rev[rev.index(i)-1]
-            j=(get_dist(i,station_name,train_num,'N'))
+            j=(get_dist(prev,station_name,train_num,'N'))
             j.append(prev)
             j.append('uptown')
             j.append(train_num)
             if not j in m:
                 m.append(j)
     for i in down:
-        if i in train_list and train_list.index(i)<train_list.index(station_name) and not (train_list.index(i)==0):
+        if i in train_list and train_list.index(i)<=train_list.index(station_name) and not (train_list.index(i)==0):
             prev=train_list[train_list.index(i)-1]
-            j=get_dist(i,station_name,train_num,'S')
+            j=get_dist(prev,station_name,train_num,'S')
             j.append(prev)
             j.append('downtown')
             j.append(train_num)
@@ -518,8 +518,6 @@ def backup_feed(train_num, station_name):
 def train_dict(train_num,station_name):
     p = []
     d = {}
-    setup()
-
     # print train_num
     if is_feed:
         if int(train_num) == 1:
