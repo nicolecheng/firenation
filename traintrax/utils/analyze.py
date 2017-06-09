@@ -1,6 +1,6 @@
 from google.transit import gtfs_realtime_pb2
 from time import time
-import urllib, urllib2, json, math
+import urllib, urllib2, json, math, os
 import lonlat, map, unicodedata
 from operator import itemgetter
 import stations
@@ -22,7 +22,13 @@ def all_trains():
 
 def setup():
     try:
-        response = urllib2.urlopen('http://datamine.mta.info/mta_esi.php?key=3a4dc71d1253cfb47a15eb3dfa2a86a5&feed_id=1')
+        api_filename = "api_key.txt"
+        file_url = os.path.dirname(__file__)
+        file_url += "/"
+        key = open(file_url+api_filename, "r").read()
+        url = 'http://datamine.mta.info/mta_esi.php?key=%s&feed_id=1' % (key)
+        
+        response = urllib2.urlopen(url)
         # print response.read()
         feed.ParseFromString(response.read())
         all_trains()
