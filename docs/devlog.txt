@@ -150,3 +150,7 @@ yikaiW -- 2017-06-06 @00:43
 
 yikaiW -- 2017-06-06 @01:43
         made gps.html functional
+
+yikaiW -- 2017-06-08 @13:43
+        Added failsafe in case gtfs doesn't load
+	Revised train locations and train stations
