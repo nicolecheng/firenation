@@ -285,12 +285,12 @@ u3=[[u'0.4 mi', u'6 mins'], [u'0.4 mi', u'3 mins'], [u'0.4 mi', u'1 min'], [u'0.
 def get_u3():
     return u3
 
-d4=[[u'0.5 mi', u'2 mins'], [u'0.5 mi', u'1 min'], [u'0.5 mi', u'2 mins'], [u'0.4 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.4 mi', u'2 mins'], [u'0.3 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'2 mins'], [u'0.9 mi', u'7 mins'], [u'0.7 mi', u'2 mins'], [u'0.4 mi', u'2 mins'], [u'0.7 mi', u'2 mins'], [u'2.0 mi', u'9 mins'], [u'1.4 mi', u'6 mins'], [u'1.0 mi', u'4 mins'], [u'1.5 mi', u'5 mins'], [u'2.1 mi', u'11 mins'], [u'0.8 mi', u'6 mins'], [u'0.3 mi', u'2 mins'], [u'0.3 mi', u'2 mins'], [u'1.8 mi', u'6 mins'], [u'0.6 mi', u'2 mins'], [u'0.6 mi', u'3 mins'], [u'1.6 mi', u'7 mins'], [u'1.4 mi', u'8 mins']]
+d4=[[u'0.5 mi', u'2 mins'], [u'0.5 mi', u'1 min'], [u'0.5 mi', u'2 mins'], [u'0.4 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.4 mi', u'2 mins'], [u'0.3 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'2 mins'], [u'0.9 mi', u'7 mins'], [u'0.7 mi', u'2 mins'], [u'0.4 mi', u'2 mins'], [u'0.7 mi', u'2 mins'], [u'2.0 mi', u'9 mins'], [u'1.4 mi', u'6 mins'], [u'1.0 mi', u'4 mins'], [u'1.5 mi', u'5 mins'], [u'2.1 mi', u'11 mins'], [u'0.8 mi', u'6 mins'], [u'0.3 mi', u'2 mins'], [u'0.3 mi', u'2 mins'], [u'1.8 mi', u'6 mins'], [u'0.6 mi', u'2 mins'], [u'0.6 mi', u'3 mins'], [u'1.6 mi', u'7 mins'], [u'1.3931142 mi', u'9 mins'], [u'1.32600612 mi', u'5 mins'], [u'1.4 mi', u'8 mins']]
 
 def get_d4():
     return d4
 
-u4=[[u'1.4 mi', u'8 mins'], [u'1.6 mi', u'6 mins'], [u'0.6 mi', u'4 mins'], [u'0.6 mi', u'1 min'], [u'1.7 mi', u'6 mins'], [u'0.3 mi', u'2 mins'], [u'0.2 mi', u'5 mins'], [u'0.8 mi', u'6 mins'], [u'2.1 mi', u'11 mins'], [u'1.5 mi', u'4 mins'], [u'1.0 mi', u'4 mins'], [u'1.4 mi', u'6 mins'], [u'2.0 mi', u'8 mins'], [u'0.7 mi', u'3 mins'], [u'0.4 mi', u'1 min'], [u'0.7 mi', u'2 mins'], [u'0.6 mi', u'2 mins'], [u'0.4 mi', u'2 mins'], [u'0.3 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.5 mi', u'1 min'], [u'0.5 mi', u'1 min'], [u'0.5 mi', u'10 mins']]
+u4=[[u'1.4 mi', u'8 mins'], [u'1.32600612 mi', u'8 mins'], [u'1.3931142 mi', u'7 mins'], [u'1.6 mi', u'6 mins'], [u'0.6 mi', u'4 mins'], [u'0.6 mi', u'1 min'], [u'1.7 mi', u'6 mins'], [u'0.3 mi', u'2 mins'], [u'0.2 mi', u'5 mins'], [u'0.8 mi', u'6 mins'], [u'2.1 mi', u'11 mins'], [u'1.5 mi', u'4 mins'], [u'1.0 mi', u'4 mins'], [u'1.4 mi', u'6 mins'], [u'2.0 mi', u'8 mins'], [u'0.7 mi', u'3 mins'], [u'0.4 mi', u'1 min'], [u'0.7 mi', u'2 mins'], [u'0.6 mi', u'2 mins'], [u'0.4 mi', u'2 mins'], [u'0.3 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.3 mi', u'1 min'], [u'0.4 mi', u'1 min'], [u'0.5 mi', u'1 min'], [u'0.5 mi', u'1 min'], [u'0.5 mi', u'10 mins']]
 
 def get_u4():
     return u4
