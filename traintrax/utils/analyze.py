@@ -33,6 +33,7 @@ def setup():
         feed.ParseFromString(response.read())
         all_trains()
         e = feed.entity[0]
+        is_feed = True
         # print e
         # print feed
     except:
